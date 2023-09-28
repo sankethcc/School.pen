@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import BckgroundImage from "../Data/LoginBackground.png"
 import SchoolPenLogo from "../Data/SchoolPenLogo.png"
 import Layout from './Layout'
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const backgroundImageUrl = BckgroundImage;
   const containerStyle = {
     background: `url(${backgroundImageUrl})`,
@@ -22,7 +24,9 @@ const Login = () => {
 
 
   const [activeTab, setActiveTab] = useState('tab1');
-
+  const login = () => {
+     navigate("/main");
+  }
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
@@ -93,11 +97,11 @@ const Login = () => {
           </div>
             <form onSubmit={(e)=>e.preventDefault()} className='login-form'>
               <div>
-              <input type="text" placeholder='Enter User Name' />
-              <input type="password" placeholder='Enter password' />
+              <input type="text" style={{color:'black'}} placeholder='Enter User Name' />
+              <input type="password" style={{color:'black'}} placeholder='Enter password' />
               <p>Forgot password</p>
               </div>
-              <button type='submit'>Login</button>
+              <button type='submit' onClick={login}>Login</button>
             </form>
         </Box>
       </Box>
