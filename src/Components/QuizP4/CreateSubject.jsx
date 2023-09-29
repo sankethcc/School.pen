@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Menu from '../QuizP1/Menu/Menu'
-import MainContainer from '../QuizP1/MainContant/MainContainer'
 import AddSubject from './AddSubject'
 import SideDetails from "../QuizP2/AddDetails";
 

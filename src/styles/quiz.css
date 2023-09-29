@@ -1,59 +1,39 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Piazzolla:wght@200;300;400&family=Poppins:ital,wght@0,300;0,700;1,500&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-h1,
-h2,
-h3,
-h4,
-p,
-a {
-  font-family: Poppins;
-}
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  a {
+    font-family: Poppins;
+    margin: 0;
+  }
 /* difining 3 sections */
-.menu-container {
-  background: #fff;
-  padding: 18px 32px;
-  height: 100vh;
-  background: #fff;
-  padding: 18px 32px;
-  width: 20%;
-}
+
 .main-container {
   padding: 38px 40px;
   background: #f5f6f7;
-  width: 55%;
+  width: 58%;
 }
 .side-details {
-  padding: 38px 40px;
-  width: 25%;
+  padding: 38px 24px;
+  width: 27%;
 }
 .main-wrapper {
   display: flex;
 }
 
 /* menu css */
-.logo {
-    display: flex;
-    justify-content: center;
-    padding-bottom: 52px;
-}
-.logo img {
-  width: 202px;
-  height: 134px;
-}
-
-.menu-wrapper ul {
-  list-style: none;
-  padding-left: 0px;
-}
-
 .menu-wrapper ul li {
-  border-radius: 16px;
-  padding: 16px 20px;
+  border-radius: 12px;
+  padding: 9px 20px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -63,10 +43,8 @@ a {
   margin-bottom: 0px;
   color: grey;
   font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
+  font-size: 14px;
   font-weight: 700;
-  line-height: normal;
 }
 .menu-wrapper ul li.active p {
   color: #fff;
@@ -74,11 +52,10 @@ a {
 .menu-wrapper ul li.active {
   background: #7a58e6;
 }
-
 .menuelog {
-  width: 34px;
-  height: 34px;
-  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
 }
 
 /* Middle wrapper css */
@@ -86,15 +63,10 @@ a {
 .profile-wrapper h3{
     color: #000;
     font-family: Lato;
-    font-size: 40px;
-    font-style: normal;
+    font-size: 35px;
     font-weight: 500;
-    line-height: normal;
 }
-.profile-wrapper {
-    display: flex;
-    justify-content: space-between;
-}
+
 .profile-box .info-header{
     width: 32px;
     height: 32px;
@@ -118,17 +90,17 @@ a {
 
 /* language section  */
 .dropdown-defult a{
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 600;
-    line-height: normal;
     border: none !important;
     background-color: #fff !important;
     color: var(--grey, #707070);
-    width: 411px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-left: 20px;
 }
 .dropdown-defult ul {
     background: #ffffff;
@@ -161,7 +133,7 @@ a {
     border-radius: 12px 12px 0px 0px;
 }
 .language-wrapper {
-    margin-top: 50px;
+    margin-top: 37px;
     margin-bottom: 32px;
     display: flex;
     justify-content: space-between;
@@ -200,11 +172,14 @@ a {
     margin-bottom: 32px;
     border-radius: 16px;
 }
+.fill-details .dropdown{
+    width: 48%;
+}
 .fill-details .dropdown  a.inner-select {
 background-color: #F5F6F7 !important;
 color: var(--grey, #707070);
 font-family: Poppins;
-font-size: 24px;
+font-size: 19px;
 font-style: normal;
 font-weight: 500;
 line-height: normal;
@@ -218,7 +193,7 @@ line-height: normal;
 .question-wrapper h3{
     color: var(--grey, #707070);
 
-    font-size: 32px;
+    font-size: 23px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
@@ -233,20 +208,25 @@ line-height: normal;
     gap: 32px;margin-bottom: 32px;
 }
 .input-question input.text-field {
-    border-radius: 12px;
+    border-radius: 10px;
     background: #F5F6F7;
     border: none;
-    padding: 14px 32px;
+    padding: 10px 23px;
     width: 100%;
-    
 }
-.input-question .imports{
-    width: 46px;
-    height: 46px;
+.input-question input.text-field:focus{
+    outline: none;
 }
-.input-question .dlt{
+.input-question .imports {
+    width: 34px;
+    object-fit: contain;
+    cursor: pointer;
+}
+.input-question .dlt {
     width: 32.375px;
-    height: 37px;
+    height: 27px;
+    object-fit: contain;
+    cursor: pointer;
 }
 .question-wrapper .form-check-input{
     width: 2em;
@@ -254,13 +234,9 @@ line-height: normal;
 }
 .add-another{
     color: #7A58E6;
-
-    font-size: 24px;
-    font-style: normal;
+    font-size: 20px;
     font-weight: 700;
-    line-height: normal;
     text-align: right;
-    margin-bottom: 0px;
 }
 .btn-div{
     text-align: center;
@@ -269,33 +245,33 @@ line-height: normal;
 .btn-div button{
     border-radius: 16px;
     background: #7A58E6;
-    padding: 20px 160px;
+    padding: 14px 160px;
     color: #FFF;
-
     font-size: 24px;
-    font-style: normal;
     font-weight: 700;
-    line-height: normal;
     margin-top: 75px;
+    border: none;
 }
-.amout-wrapper{
-    border-radius: 24px;
+.amount-wrapper{
+    border-radius: 18px;
     background: linear-gradient(180deg, #8C6FE9 0%, #2D00BA 100%);
     text-align: center;
-    padding: 43px 0px;
+    padding: 25px 0px;
 }
-.amout-wrapper .price-heading{
+.amount-wrapper p{
+    margin-bottom: 0;
+}
+.amount-wrapper .price-heading{
     color: #FFF;
-
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal; 
 }
-.amout-wrapper .price-count{
+.amount-wrapper .price-count{
     color: #FFF;
 
-    font-size: 48px;
+    font-size: 38px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -313,30 +289,31 @@ line-height: normal;
 /* preview section */
 .side-details h3{
     color: var(--black, #383838);
-
-    font-size: 32px;
+    font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
-    padding: 32px 0px;
+    padding-top: 30px;
+    padding-bottom: 18px;
 }
 .preview-question {
-    padding: 32px 40px;
+    padding: 22px 25px;
     background: #F5F6F7;
     border-radius: 16px;
 }
 .preview-question p{
     color: var(--black, #383838);
-
-    font-size: 32px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    padding-right: 32px;
+    padding-bottom: 12px;
 }
 .preview-question ul li{
     color: var(--inactive-grey, #A9A9B1);
 
-    font-size: 24px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;

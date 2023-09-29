@@ -4,7 +4,7 @@ import edits  from '../assets/edit.png'
 const SideDetails = () => {
   return (
     <div className="side-details">
-      <div className="amout-wrapper">
+      <div className="amount-wrapper">
         <p className="price-heading">Total quiz</p>
         <p className="price-count">50,000</p>
       </div>
@@ -22,7 +22,7 @@ const SideDetails = () => {
       <div className='preview-question'>
         <img src={edits} className='edit-logo' alt="" />
         <div>
-          <img src="" alt="" />
+          <img className='' src="" alt="" />
           <p>Tadoba national park known for sheltering tiger, panther and bear is located in: </p>
           <ul>
             <li>Assam</li>

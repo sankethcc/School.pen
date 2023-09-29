@@ -1,12 +1,13 @@
 import React from "react";
 
-import Menu from "./Menu/Menu";
-import MainContainer from "./MainContant/MainContainer";
-import SideDetails from "./Preview/SideDetails";
+
 import { useState } from "react";
+import Menu from "../QuizP1/Menu/Menu";
+import SideDetails from "../QuizP1/Preview/SideDetails";
+import MiddleColumn from "./MiddleColumn";
 
 
-const Quiz = () => {
+const Exam = () => {
   // hamburger functionality for responsive page
   const [toggle, setToggle] = useState(true)
   const [close, setClose] = useState("")
@@ -22,29 +23,20 @@ const Quiz = () => {
       setDBlock("")
     }
   }
-
   const props = {
     toggle,
     close,
     toggleMenu, 
-    dBlock,
+    dBlock
   }
 
-  
-
   return (
-    <div className="main">
-      <div className="main-wrapper">
-        {/* meun section */}
-        <Menu {...props}/>
-        {/* middile section  */}
-         <MainContainer {...props} />
-        {/* preview section  */}
-        <SideDetails />
-        
-      </div>
+    <div className="main-wrapper">
+      <Menu {...props} />
+      <MiddleColumn />
+      <SideDetails />
     </div>
   );
 };
 
-export default Quiz;
+export default Exam;
