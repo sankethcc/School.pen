@@ -11,6 +11,7 @@ import BckgroundImage from "../Data/LoginBackground.png";
 import SchoolPenLogo from "../Data/SchoolPenLogo.png";
 import Layout from "./Layout";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -20,11 +21,11 @@ const Login = () => {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundColor: "#7A58E6",
-    minHeight: "100vh",
+    height: "100vh",
   };
   const paraStyle = {
     color: `var(--Dark-grey, #707070)`,
-    fontSize: `15px`,
+    fontSize: `20px`,
     paddingTop: "19px",
     fontWeight: "400",
   };
@@ -47,10 +48,55 @@ const Login = () => {
   };
 
   const [activeTab, setActiveTab] = useState("tab1");
+  const [role, setrole] = useState("user");
+  const [note, setnote] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
   const login = () => {
-    navigate("/main");
+    
+      axios
+        .post("http://localhost:5000/login", {
+          email: note.email,
+          password: note.password,
+          role: role,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            // Success
+            // Store the user object in local storage
+            localStorage.setItem("user", JSON.stringify(response.data));
+            navigate("/main");
+          } else {
+            alert("Error occured");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    
+  };
+  // const login = () => {
+  //    navigate("/main");
+  // }
+  const InputEvent = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    setnote((prevData) => {
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
   };
   const handleTabClick = (tab) => {
+    if (tab == "tab2") {
+      setrole("admin");
+    } else {
+      setrole("user");
+    }
     setActiveTab(tab);
   };
   return (
@@ -128,31 +174,48 @@ const Login = () => {
             className="login-form"
             sx={{ textAlign: "center", w: "100%" }}
           >
-            <Input
-              type="text"
-              style={inputStyle}
-              placeholder="Enter User Name"
-              disableUnderline
-            />
-            <Input
-              type="password"
-              style={inputStyle}
-              placeholder="Enter password"
-              disableUnderline
-            />
-            <Typography
-              sx={{
-                color: "#7A58E6",
-                fontSize: "16px",
-                fontWeight: "700",
-                cursor: "pointer",
-                textAlign: "end",
-                pb: "20px",
-              }}
-            >
-              Forgot password
-            </Typography>
-
+            <div>
+              {/* {role == "user" ? (
+                <input
+                  name="name"
+                  type="text"
+                  value={note.name}
+                  onChange={InputEvent}
+                  style={inputStyle}
+                  placeholder="Enter User Name"
+                />
+              ) : (
+                <li />
+              )} */}
+              <Input
+                name="email"
+                type="text"
+                value={note.email}
+                onChange={InputEvent}
+                style={inputStyle}
+                placeholder="Enter Your Email"
+              />
+              <Input
+                name="password"
+                type="password"
+                value={note.password}
+                onChange={InputEvent}
+                style={inputStyle}
+                placeholder="Enter password"
+              />
+              <Typography
+                sx={{
+                  color: "#7A58E6",
+                  fontSize: "16px",
+                  fontWeight: "700",
+                  cursor: "pointer",
+                  textAlign: "end",
+                  pb: "20px",
+                }}
+              >
+                Forgot password
+              </Typography>
+            </div>
             <Button
               type="submit"
               onClick={login}
