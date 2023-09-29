@@ -7,12 +7,18 @@ import FillDetails from './FillDetails'
 import InputQuestion from './InputQuestion'
 import ProfileWrapper from './ProfileWrapper'
 
-const MainContainer = ({close, toggleMenu}) => {
+const MainContainer = (props,{close, toggleMenu}) => {
   const [input, setInput] = useState([])
+  const [quest, setquest] = useState([])
   const onChange = (e)=>{
     setInput(e.target.value)
   }
-
+  const setchange = (e) => {
+    setquest(e)
+  }
+  const post = () => {
+    props.passvalue(input,quest)
+  }
   return (
     <div className="main-container">
             <ProfileWrapper toggleMenu={toggleMenu} close={close} />
@@ -26,16 +32,16 @@ const MainContainer = ({close, toggleMenu}) => {
                 </div>
                 <h3>Options:</h3>
                 <div>
-                  <InputQuestion />
-                  <InputQuestion />
-                  <InputQuestion />
-                  <InputQuestion />
+                  <InputQuestion passinput={ setchange} />
+                  <InputQuestion passinput={ setchange}/>
+                  <InputQuestion passinput={ setchange}/>
+                  <InputQuestion passinput={ setchange}/>
                   
                 </div>
                 <p className="add-another">Add another option</p>
             </div>
             <div className="btn-div">
-              <button>Post</button>
+              <button onClick={post}>Post</button>
             </div>
         </div>
   )

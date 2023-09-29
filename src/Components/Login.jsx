@@ -4,6 +4,7 @@ import BckgroundImage from "../Data/LoginBackground.png"
 import SchoolPenLogo from "../Data/SchoolPenLogo.png"
 import Layout from './Layout'
 import { useNavigate } from 'react-router-dom';
+import axios from "axios"
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,15 +25,81 @@ const Login = () => {
 
 
   const [activeTab, setActiveTab] = useState('tab1');
+  const [role, setrole] = useState('user');
+  const [note,setnote]= useState({
+    name:"",
+    email: "",
+    password:"",
+  })
+  
   const login = () => {
-     navigate("/main");
+    if (role == admin) {
+      axios.post('http://localhost:5000/login',
+        {
+          email: note.email,
+          password: note.password,
+          role: role,
+        }
+      ).then(response => {
+        if (response.status === 200) {
+          // Success
+          // Store the user object in local storage
+          localStorage.setItem('user', JSON.stringify(response.data));
+          navigate("/main");
+        } else {
+          alert('Error occured')
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+    else {
+      axios.post('http://localhost:5000/user',
+        {
+          name:note.name,
+          email: note.email,
+          password: note.password,
+        }
+      ).then(response => {
+        if (response.status === 200) {
+          // Success
+          // Store the user object in local storage
+          localStorage.setItem('user', JSON.stringify(response.data));
+          navigate("/main");
+        } else {
+          alert('Error occured')
+        }
+      }).catch(err => {
+        console.log(err)
+      })
+    }
+  };
+  // const login = () => {
+  //    navigate("/main");
+  // }
+  const InputEvent = (event) => {
+    const value = event.target.value;
+    const name = event.target.name;
+    setnote((prevData) => {
+      return {
+        ...prevData,
+        [name]: value,
+      }
+    })
   }
   const handleTabClick = (tab) => {
+    if (tab == 'tab2') {
+      setrole('admin')
+    }
+    else {
+      setrole('user')
+    }
     setActiveTab(tab);
   };
   return (
     <Layout>
       <Box 
+        
         display="flex" 
         alignItems="center"
         justifyContent="center"
@@ -69,7 +136,8 @@ const Login = () => {
           },
         }}
         className={`tab ${activeTab === 'tab1' ? 'active' : ''}`}
-        onClick={() => handleTabClick('tab1')}
+              onClick={() =>
+                handleTabClick('tab1')}
       >
         User
       </Button>
@@ -96,9 +164,12 @@ const Login = () => {
       </Button>
           </div>
             <form onSubmit={(e)=>e.preventDefault()} className='login-form'>
-              <div>
-              <input type="text" style={{color:'black'}} placeholder='Enter User Name' />
-              <input type="password" style={{color:'black'}} placeholder='Enter password' />
+            <div>
+              {role == 'user' ? <input name="name" type="text" value={note.name} onChange={InputEvent} style={{ color: 'black' }} placeholder='Enter User Name' />
+                :<li/>
+              }
+              <input name="email" type="text" value={note.email} onChange={InputEvent} style={{color:'black'}} placeholder='Enter Your Email' />
+              <input name="password" type="password" value={note.password } onChange={InputEvent} style={{color:'black'}} placeholder='Enter password' />
               <p>Forgot password</p>
               </div>
               <button type='submit' onClick={login}>Login</button>

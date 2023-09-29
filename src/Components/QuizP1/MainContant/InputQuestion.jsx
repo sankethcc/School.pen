@@ -3,11 +3,12 @@ import React, { useState } from 'react'
 import imports  from '../assets/imports.png'
 import dlt  from '../assets/dlt.png'
 
-const InputQuestion = () => {
+const InputQuestion = (props) => {
   // control component 
   const [input, setInput] = useState()
   const onChange = (e)=>{
     setInput(e.target.value)
+    props.passinput(input)
   }
   return (
     // creating MCQ options 
