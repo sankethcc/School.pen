@@ -18,8 +18,8 @@ const Language = () => {
       {/* add items  */}
       <Link className="btn btn-secondary dropdown-toggle dot-name" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false"> ...</Link>
       <ul className="dropdown-menu">
-        <li><NavLink className="dropdown-item" to={"/page2"}>Add language</NavLink></li>
-        <li><NavLink className="dropdown-item" to={"/page3"}>Create subject</NavLink></li>
+        <li><NavLink className="dropdown-item" to={"/page3"}>Add language</NavLink></li>
+        <li><NavLink className="dropdown-item" to={"/page2"}>Create subject</NavLink></li>
         <li><NavLink className="dropdown-item" to={"/page4"}>Create topic</NavLink></li> 
         <li><NavLink className="dropdown-item" to={"/page4"}>Create subtopic</NavLink></li>
       </ul>
