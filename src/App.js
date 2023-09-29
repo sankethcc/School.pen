@@ -11,11 +11,12 @@ import CreateSubject from "./Components/QuizP4/CreateSubject";
 
 
 function App() {
+  
   return (
     <div className="App">
       <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/" element={<Login /> } />
         <Route path="/main" element={<Quiz />} />
         <Route path="/page2" element={<Page2 />} />
         <Route path="/page3" element={<Page3 />} />

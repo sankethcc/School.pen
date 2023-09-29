@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link,NavLink} from 'react-router-dom'
 
 const Language = () => {
   return (
@@ -11,17 +11,17 @@ const Language = () => {
         <li><Link className="dropdown-item" to={"/"}>Hindi</Link></li>
         <li><Link className="dropdown-item" to={"/"}>English</Link></li>
         <li><Link className="dropdown-item" to={"/"}>Urdu</Link></li>
-        <li><Link className="dropdown-item" to={"/"} style={{color: "#7A58E6"}}>Add New</Link></li>
+        <li><NavLink className="dropdown-item add-item" to={"/page2"} >Add New</NavLink></li>
       </ul>
     </div>
     <div className="dropdown dropdown-defult dot-dropdown">
       {/* add items  */}
       <Link className="btn btn-secondary dropdown-toggle dot-name" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false"> ...</Link>
       <ul className="dropdown-menu">
-        <li><Link className="dropdown-item" to={"/Page3"}>Add language</Link></li>
-        <li><Link className="dropdown-item" to={"/page2"}>Create subject</Link></li>
-        <li><Link className="dropdown-item" to={"/page4"}>Create topic</Link></li> 
-        <li><Link className="dropdown-item" to={"/"}>Create subtopic</Link></li>
+        <li><NavLink className="dropdown-item" to={"/page4"}>Add language</NavLink></li>
+        <li><NavLink className="dropdown-item" to={"/page4"}>Create subject</NavLink></li>
+        <li><NavLink className="dropdown-item" to={"/page4"}>Create topic</NavLink></li> 
+        <li><NavLink className="dropdown-item" to={"/page4"}>Create subtopic</NavLink></li>
       </ul>
     </div>
   </div>

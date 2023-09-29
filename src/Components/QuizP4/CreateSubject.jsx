@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Menu from '../QuizP1/Menu/Menu'
 import MainContainer from '../QuizP1/MainContant/MainContainer'
 import AddSubject from './AddSubject'
+import SideDetails from "../QuizP2/AddDetails";
 
 
 const CreateSubject = () => {
@@ -31,7 +32,7 @@ const CreateSubject = () => {
          <div className="main-wrapper">
              <Menu {...props} />
              <AddSubject />
-             
+             <SideDetails/>
 
          </div>
      </div>
