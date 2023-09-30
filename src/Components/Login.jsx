@@ -44,7 +44,7 @@ const Login = () => {
     width: "100%",
     border: "none",
     marginBottom: "18px",
-    color: "#A9A9B1",
+    color: "#707070",
   };
 
   const [activeTab, setActiveTab] = useState("tab1");
