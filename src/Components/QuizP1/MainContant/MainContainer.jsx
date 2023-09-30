@@ -13,7 +13,7 @@ const MainContainer = ({ close, toggleMenu }) => {
 
   return (
     <div className="main-container">
-      <ProfileWrapper toggleMenu={toggleMenu} close={close} />
+      <ProfileWrapper toggleMenu={toggleMenu} close={close} name='Create Quiz' />
       <Language />
       <FillDetails />
       <div className="question-wrapper">

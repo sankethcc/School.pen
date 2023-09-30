@@ -112,7 +112,7 @@ const Login = () => {
           maxWidth="xs"
           sx={{
             // width: "30%",
-            minHeight: "70%",
+            // minHeight: "70%",
             bgcolor: "#fff",
             borderRadius: "20px",
             py: "30px",
@@ -194,6 +194,7 @@ const Login = () => {
                 onChange={InputEvent}
                 style={inputStyle}
                 placeholder="Enter Your Email"
+                disableUnderline
               />
               <Input
                 name="password"
@@ -202,6 +203,7 @@ const Login = () => {
                 onChange={InputEvent}
                 style={inputStyle}
                 placeholder="Enter password"
+                disableUnderline
               />
               <Typography
                 sx={{

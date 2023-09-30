@@ -8,6 +8,7 @@ import Page2 from "./Components/QuizP2/Page2";
 import Page3 from "./Components/QuizP3/Page3";
 import CreateSubject from "./Components/QuizP4/CreateSubject";
 import Exam from "./Components/Exam/Exam";
+import User from "./Components/UserComponent/User";
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/page3" element={<Page3 />} />
         <Route path="/page4" element={<CreateSubject />} />
         <Route path="/exam" element={<Exam />} />
+        <Route path="/user" element={<User />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       </BrowserRouter>

@@ -7,10 +7,11 @@ import Instructions from '../QuizP4/Instructions'
 const MiddleColumn = () => {
   return (
     <div className='main-container'>
-        <ProfileWrapper />
+        <ProfileWrapper name="Create Exam" />
         <Language />
         <FillDetails />
         <Instructions />
+        
       
     </div>
   )

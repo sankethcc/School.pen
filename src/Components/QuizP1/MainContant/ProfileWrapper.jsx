@@ -3,7 +3,7 @@ import bell  from '../assets/bell.png'
 import profile from '../assets/profile.png'
 import { Box } from '@mui/material'
 
-const ProfileWrapper = ({toggleMenu, close}) => {
+const ProfileWrapper = ({toggleMenu, close, name}) => {
   return (
     <Box className="profile-wrapper"
       sx={{
@@ -12,7 +12,7 @@ const ProfileWrapper = ({toggleMenu, close}) => {
         alignItems:'center'
       }}
     >
-      <h3>Create quiz</h3>
+      <h3>{name}</h3>
       <div className="profile-box">
         <div>
           <img className="info-header" src={bell} alt="" />

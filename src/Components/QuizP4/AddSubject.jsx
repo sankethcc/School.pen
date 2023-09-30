@@ -7,7 +7,7 @@ import { Box, TextField } from '@mui/material'
 const AddSubject = ({toggleMenu, close}) => {
   return (
     <div className="main-container">
-        <ProfileWrapper toggleMenu={toggleMenu} close={close} />
+        <ProfileWrapper toggleMenu={toggleMenu} close={close} name="Create Subject" />
         <Box
         sx={{
           display:'flex',
