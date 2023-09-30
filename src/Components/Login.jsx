@@ -109,7 +109,7 @@ const Login = () => {
         style={containerStyle}
       >
         <Container
-          maxWidth="xs"
+          // maxWidth="xs"
           sx={{
             // width: "30%",
             // minHeight: "70%",
@@ -118,6 +118,16 @@ const Login = () => {
             py: "30px",
             px: "40px !important",
             justifyContent: "space-around",
+            width:{
+              xs:"100%",
+              sm:'60%',
+              md:"45%",
+              lg:'35%',
+              xl:'30%'
+            },
+            height:{
+
+            }
           }}
         >
           <Box textAlign="center" sx={{ pb: "29px" }}>

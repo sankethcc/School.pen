@@ -4,7 +4,7 @@ import { Link ,NavLink} from 'react-router-dom';
 const DropDown = ({dropdownName,listArray, classList, adddetailsId ,add}) => {
 
   return (
-    <div className="dropdown dropdown-defult" id={adddetailsId}>
+    <div  className="dropdown dropdown-defult" id={adddetailsId}>
             <Link className="btn btn-secondary dropdown-toggle inner-select" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {dropdownName}
             </Link>
