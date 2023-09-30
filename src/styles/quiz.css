@@ -445,6 +445,22 @@ button.btnt{
 .hamburger{
     display: none;
 }
+
+/* Assign user dropdown css */
+.assign-user-fill{
+    display: flex;   
+    flex-direction: column;
+    width: 100%;
+}
+.assign-user-fill .dropdown{
+    width: 100%;
+}
+.assign-user-fill a{
+    padding-top: 14px;
+    padding-bottom: 14px;
+    padding-left: 28px;
+}
+
 /* responsive css */
 @media screen and (max-width: 1200px) {
     .menu-container {
