@@ -5,12 +5,25 @@ import Test from '../assets/Test.png'
 import Exam from '../assets/Exam.png'
 import User from '../assets/User.png'
 import { Box, List } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import {State} from "../../Context/Provider"
 
-const Menu = ({dBlock}) => {
-  const [activeTab, setActiveTab] = useState('tab1');
+const Menu = ({ dBlock }) => {
+  const navigate = useNavigate();
+  // const [activeTab, setActiveTab] = useState('tab1');
+  const { activeTab, setActiveTab } = State();
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
+    if (tab == 'tab1') {
+       navigate("/main");
+    }
+    else if(tab == 'tab2') {
+       navigate("/exam");
+    }
+    else {
+      navigate("/user");
+    }
   };
   
   return (
@@ -35,7 +48,8 @@ const Menu = ({dBlock}) => {
         <List >
           <li className={`tab ${activeTab === 'tab1' ? 'active' : ''}`} 
 
-          onClick={() => {
+            onClick={() => {
+            
             handleTabClick('tab1')
           }} 
           >
