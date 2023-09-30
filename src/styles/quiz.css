@@ -190,9 +190,93 @@ line-height: normal;
     margin-bottom: 32px;
     border-radius: 16px;
 }
+
+.addSub{
+    display: flex;
+        width: 100%;
+        height: 803px;
+        padding-bottom: 0px;
+        flex-direction: column;
+        /* align-items: center; */
+        flex-shrink: 0;
+        /* background-color: #000; */
+}
+
+.textc{
+    color: var(--grey, #707070);
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        
+}
+.subtopic{
+    padding: 0;
+    margin: 10px 0 10px 0;
+}
+
+.subtopicl {
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.subtopic input{
+    border-radius: 10px;
+        background: #F5F6F7;
+        border: none;
+        padding: 10px 23px;
+        width: 100%;
+   
+}
+
+.addSub button{
+    display: inline-flex;
+    margin-top: 10px;
+    padding: 12px 24px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    background: #7A58E6;
+    width:70%;
+    border: none;
+    /* float:right; */
+    height: 40px;
+}
+button.btnt{
+    float:right
+}
+.subtopicl{
+    width: 100%;
+}
+
+.subtopicl input{
+    width: 75%;
+}
+.subtopicl text{
+    color: #7A58E6;
+    font-family: Poppins;
+        font-size: 10px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        width: 23%;
+}
+
+.btnt{
+    
+    color: #FFF;
+        font-family: Poppins;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        float: right;
+}
 .question-wrapper h3{
     color: var(--grey, #707070);
-
     font-size: 23px;
     font-style: normal;
     font-weight: 700;

@@ -11,7 +11,7 @@ const Language = () => {
         <li><Link className="dropdown-item" to={"/"}>Hindi</Link></li>
         <li><Link className="dropdown-item" to={"/"}>English</Link></li>
         <li><Link className="dropdown-item" to={"/"}>Urdu</Link></li>
-        <li><NavLink className="dropdown-item add-item" to={"/page2"} >Add New</NavLink></li>
+        <li><NavLink className="dropdown-item add-item" to={"/page3"} >Add New</NavLink></li>
       </ul>
     </div>
     <div className="dropdown dropdown-defult dot-dropdown">
