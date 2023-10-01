@@ -12,14 +12,16 @@ import {
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ClearIcon from '@mui/icons-material/Clear';
-
+import { State } from "../Context/Provider"
+import axios from 'axios';
 const CreateQuiz = () => {
+  const { quest, setquest } = State();
   const [question, setQuestion] = useState({ text: '', image: null });
   const [options, setOptions] = useState([
-    { text: '', image: null },
-    { text: '', image: null },
-    { text: '', image: null },
-    { text: '', image: null },
+    { text: '', image: null ,answer: false},
+    { text: '', image: null ,answer: false},
+    { text: '', image: null ,answer: false},
+    { text: '', image: null ,answer: false},
   ]);
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
 
@@ -55,10 +57,13 @@ const CreateQuiz = () => {
     const newOptions = [...options];
     newOptions[index] = { text: '', image: null };
     setOptions(newOptions);
+    // 
+    // const userd = localStorage.getItem('user')
+    // console.log(userd.user)
   };
 
   const handleAddOption = () => {
-    const newOptions = [...options, { text: '', image: null }];
+    const newOptions = [...options, { text: '', image: null,answer: false}];
     setOptions(newOptions);
   };
 
@@ -73,7 +78,38 @@ const CreateQuiz = () => {
   };
 
   const handlePostQuestion = () => {
-    console.log('Posted Question:', { question, options, correctAnswerIndex });
+    // const data = {
+    const formData = new FormData();
+    formData.append('language', quest.Language); 
+    formData.append('class', quest.Class);
+    formData.append('subject', quest.Subject);
+    formData.append('topic', quest.Topic);
+    formData.append('subtopic', quest.Sub_topic);
+    formData.append('level', quest.Level);
+    formData.append('quiz_type', quest.Quiz_Type);
+
+    const questionData = {
+      question: question.text,
+      question_image: question.image, // Replace with your image data if needed
+      options
+    };
+
+    formData.append('question_container', JSON.stringify(questionData));
+    // const user = localStorage.getItem('user')
+    const creatorId = Number("6516da2c4cef1a86034d8f01");
+    axios
+    .post(`http://localhost:5000/create_quizz/${creatorId}`, formData)
+        .then((response) => {
+          if (response.status === 201) {
+            console.log("Data added successfully");
+          } else {
+            alert("Error occured");
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+    });
+    // console.log('Posted Question:', { question, options, correctAnswerIndex });
   };
 
 

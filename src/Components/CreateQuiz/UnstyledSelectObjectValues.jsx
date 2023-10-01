@@ -5,13 +5,24 @@ import { Option, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
 import { Popper } from '@mui/base/Popper';
 import { styled } from '@mui/system';
+// import { useState } from 'react';
+import {State} from "../Context/Provider"
 
-export default function UnstyledSelectObjectValues({dropdownName,listArray,add }) {
-  const style = dropdownName == "Language"?"#fff":'#F5F6F7'
+export default function UnstyledSelectObjectValues({dropdownName,listArray,add,value }) {
+  const style = dropdownName == "Language" ? "#fff" : '#F5F6F7'
+  const { quest, setquest } = State();
+ 
   return (
-    <CustomSelect sx={{background:`${style}`}} placeholder={dropdownName}>
+    <CustomSelect onChange={(event, newValue) =>setquest((prevData) => {
+      return {
+        ...prevData,
+        [value]: newValue,
+      };
+    })} sx={{background:`${style}`}} placeholder={dropdownName} >
         {listArray.map((itemVal, index) => (
-            <StyledOption key={index} value={itemVal}>{itemVal}</StyledOption>
+          <StyledOption
+            key={index} value={itemVal} >{itemVal}
+          </StyledOption>
                 ))}
         {add?<StyledOption sx={{color:'blue'}}>Add {dropdownName}</StyledOption>:null}
     </CustomSelect>
@@ -25,7 +36,6 @@ function CustomSelect(props) {
     popper: StyledPopper,
     ...props.slots,
   };
-
   return <Select {...props} slots={slots} />;
 }
 
