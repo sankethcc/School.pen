@@ -19,3 +19,7 @@
   a {
     font-family: Poppins;
   }
+
+  .custom-menu-paper {
+    box-shadow: none !important;
+  }

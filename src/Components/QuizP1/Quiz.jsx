@@ -22,14 +22,10 @@ const Quiz = () => {
       setDBlock("")
     }
   }
+  
 
-  const props = {
-    toggle,
-    close,
-    toggleMenu, 
-    dBlock,
-  }
 
+  const props = {toggle, close, toggleMenu, dBlock,  }
   
 
   return (

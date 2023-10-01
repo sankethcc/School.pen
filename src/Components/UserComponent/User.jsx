@@ -5,7 +5,6 @@ import { useState } from "react";
 import Menu from "../QuizP1/Menu/Menu";
 import Assign from "./AssignUser/Assign";
 import TotalUser from "./AssignUser/TotalUser";
-import { Box } from "@mui/material";
 
 
 const User = () => {
@@ -34,9 +33,6 @@ const User = () => {
   return (
     <div className="main-wrapper">
         <Menu {...props} />
-        <Box>
-          
-        </Box>
         <Assign />
         <TotalUser />
     </div>

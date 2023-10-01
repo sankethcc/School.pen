@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import imports  from '../assets/imports.png'
 import dlt  from '../assets/dlt.png'
 
-const InputQuestion = () => {
+const InputQuestion = ({option, handleInputChange, value}) => {
   // control component 
   const [input, setInput] = useState()
   const onChange = (e)=>{
@@ -13,7 +13,14 @@ const InputQuestion = () => {
     // creating MCQ options 
     <div className="input-question">
         <input className="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" />
-        <input placeholder='Option A' className="text-field" type="text" onChange={onChange} value={input} />
+        <input 
+          type="text" 
+          name={`questionContainer.options.option${value}`}
+          value={option}
+          onChange={handleInputChange} 
+          placeholder='Option A' 
+          className="text-field" 
+        />
         <img className="imports" src={imports} alt="" />
         <img className="dlt" width ="32.375px" height="37px" src={dlt} alt="" />
     </div>

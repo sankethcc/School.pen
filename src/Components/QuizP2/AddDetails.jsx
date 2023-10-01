@@ -40,7 +40,13 @@ const AddDetails = () => {
         .catch((err) => {
           console.log(err);
         });
+
   }
+  const [addSubject, setAddSubject] = useState(false);
+
+  const toggleAddSubject = () => {
+    setAddSubject(prevAddSubject => !prevAddSubject);
+  };
   return (
     <div className="side-details page2">
       <h3>Create subject/topic/subtopic</h3>
@@ -48,21 +54,21 @@ const AddDetails = () => {
 
         {/* style={{display:'none'}} */}
       <div className="dropdown dropdown-defult" style={{marginBottom:'10px'}}>
-            <Link className="btn btn-secondary dropdown-toggle inner-select" to={"/"} role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <Link className="btn btn-secondary dropdown-toggle inner-select"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Add new or select existing
             </Link>
             {/* all dropdown items display using map function */}
             <ul className="dropdown-menu" >
                 {listarray.map((itemVal, index) => (
                     <li key={index}>
-                    <Link className="dropdown-item" to={"/"}>{itemVal}</Link>
+                    <Link className="dropdown-item" onClick={toggleAddSubject}>{itemVal}</Link>
                     </li>
                 ))}
-              <li><NavLink className="dropdown-item add-item" to={"/page2"}>Add New</NavLink></li>
+              <li><NavLink onClick={toggleAddSubject} className="dropdown-item add-item" to={"/page2"}>Add New</NavLink></li>
               
             </ul>
       </div>
-      
+      {addSubject === true?
       <div className='addSub'>
         <div className='subtopic'>
           <text className="textc">Subject</text>
@@ -104,9 +110,16 @@ const AddDetails = () => {
           </div>
         </div>
         <div>
-          <button onClick={submithandler}   style={{float: "right"}}><text className='btnt'>Add new topic</text></button>
+          <button onClick={()=>{
+            submithandler()
+            toggleAddSubject()
+            }}   style={{float: "right"}}>
+              <text className='btnt'>Add new topic</text>
+            
+            </button>
         </div>
       </div>
+      :null}
     </div>
   )
 }
