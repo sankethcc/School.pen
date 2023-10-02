@@ -87,14 +87,16 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     formData.append('subtopic', quest.Sub_topic);
     formData.append('level', quest.Level);
     formData.append('quiz_type', quest.Quiz_Type);
+    console.log(formData)
 
     const questionData = {
       question: question.text,
-      question_image: question.image, // Replace with your image data if needed
-      options
+      question_image: question.image, 
+      options:options
     };
 
     formData.append('question_container', JSON.stringify(questionData));
+    // console.log(formData)
     // const user = localStorage.getItem('user')
     const creatorId = Number("6516da2c4cef1a86034d8f01");
     axios
