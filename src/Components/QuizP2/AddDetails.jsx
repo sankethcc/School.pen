@@ -31,7 +31,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
   //       [name]: value,
   //     };
   //   });
-  // };
+  //};
   const InputEvent = (event) => {
     const newSub = [...sub];
     newSub[0].name = event.target.value;
@@ -56,23 +56,27 @@ const AddDetails = ({handleThreeDotMenu}) => {
   
 
   const submithandler = () => {
-    // const formData = new FormData();
-    // formData.append('subject', sub.name);
-    // formData.append('topic', sub.topic);
-    // formData.append('subtopic', [sub.subt1,sub.subt2]);
+    const formData = new FormData();
+    console.log(sub);
+    formData.append('subject', sub[0].name);
+    formData.append('subject_image', sub[0].image);
+    formData.append('topic', sub[1].topic);
+    formData.append('topic_image', sub[1].image); 
+    formData.append('subtopic', sub[2].subt1);
+    formData.append('subtopic_image', sub[2].image);
 
-    // axios
-    // .post("http://localhost:5000/add_Subject_quizz", formData)
-    //     .then((response) => {
-    //       if (response.status === 200) {
-    //         console.log("Data added successfully");
-    //       } else {
-    //         alert("Error occured");
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
+    axios
+    .post("http://localhost:5000/add_Subject_quizz", formData)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log("Data added successfully");
+          } else {
+            alert("Error occured");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     console.log(sub)
 
   }
@@ -102,7 +106,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
               
             </ul>
       </div>
-      <UnstyledSelectObjectValues dropdownName={"Add New or select existing"} listArray={["Science", "Mathematics", "History"]} add={true} value={"Subject"}/>
+      {/* <UnstyledSelectObjectValues dropdownName={"Add New or select existing"} listArray={["Science", "Mathematics", "History"]} add={true} value={"Subject"}/> */}
       {addSubject === true?
       <div className='addSub'>
         <div className='subtopic'>
