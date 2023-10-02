@@ -1,10 +1,37 @@
-import React from 'react'
+import React , { useState ,useEffect} from 'react'
 import ProfileWrapper from '../QuizP1/MainContant/ProfileWrapper'
 import DropDown from '../QuizP1/MainContant/DropDown'
 import AccordianAdd from './AccordianAdd'
 import { Box, TextField } from '@mui/material'
+import axios from 'axios';
 
-const AddSubject = ({toggleMenu, close}) => {
+const AddSubject =  ({ toggleMenu, close }) => {
+    const [subjects, setsubject] = useState([]);
+    useEffect(() => {
+        axios.get(`http://localhost:5000/get_all_subject_quizz`).then(
+            // &limit=10
+            async(response) => {
+                // setUser(response.data);
+                // console.log(response.data);
+                // const data = await response.json();
+                // console.log(data);
+                setsubject(response.data);
+                // const objectSet = new Set(subjects.map(JSON.stringify));
+                console.log(response.data)
+
+                // var wordsArray = response.data.split('}, {"_id"');
+                var wordsArray = Array.from(response.data)
+                // console.log(wordsArray);
+                                   
+            }
+            ).catch((error) => {
+                console.error(error);
+
+        });
+        
+        
+    }  , []);
+
   return (
     <Box >
         {/* <ProfileWrapper toggleMenu={toggleMenu} close={close} name="Create Subject" /> */}
@@ -26,7 +53,10 @@ const AddSubject = ({toggleMenu, close}) => {
         />
         </Box> */}
         
-        <Box
+          {
+            //   subjects.map((data) => {
+            //     return
+        <Box 
         sx={{
             backgroundColor:'#fff',
             p:'12px 48px',
@@ -34,14 +64,18 @@ const AddSubject = ({toggleMenu, close}) => {
             mt:'32px',
             fontWeight:'700'
         }}
-        >
-        <AccordianAdd 
+          >
+            
+        <AccordianAdd
             subject="Science" 
             SubSubject={['Chemitry', 'Biology', 'Physics', 'Earth Science', 'Astronomy']} 
             topics={['Element', "Chemical Reactions", 'Organic chemistry']}        
         />
-        </Box>
-        <Box
+                </Box>
+            //   })
+          }
+        
+        {/* <Box
         sx={{
             backgroundColor:'#fff',
             p:'12px 48px',
@@ -90,9 +124,11 @@ const AddSubject = ({toggleMenu, close}) => {
             topics={[]}
         
         />
-        </Box>
-        
-    </Box>
+        </Box> */}
+       
+      </Box>
+      
+    
   )
 }
 
