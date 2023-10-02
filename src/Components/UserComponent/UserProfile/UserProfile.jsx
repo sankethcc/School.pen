@@ -30,11 +30,11 @@ const UserProfile = () => {
      dBlock
    }
    return (
-     <div className="main">
-         <div className="main-wrapper">
-             <Menu {...props} />
-            <Box className='main-container'>
-             <ProfileWrapper name="User Profile" />
+     <Box >
+         <Box >
+             {/* <Menu {...props} /> */}
+            <Box >
+             {/* <ProfileWrapper name="User Profile" /> */}
              <Box sx={{display:'flex', justifyContent:'space-between', mt:'70px', flexWrap:'wrap'}}>
                 <UserDataBox name={"Total Task"} number={"1,000"} />
                 <UserDataBox name={"Complete"} number={"500"} />
@@ -57,11 +57,11 @@ const UserProfile = () => {
                 </Box>
             </Box>
             </Box>
-            <UserData />
+            {/* <UserData /> */}
            
 
-         </div>
-     </div>
+         </Box>
+     </Box>
    )
 }
 

@@ -1,12 +1,12 @@
 import React from 'react'
 import edits  from '../assets/edit.png'
 
-const SideDetails = () => {
+const SideDetails = ({heading, number}) => {
   return (
     <div className="side-details">
       <div className="amount-wrapper">
-        <p className="price-heading">Total quiz</p>
-        <p className="price-count">50,000</p>
+        <p className="price-heading">{heading}</p>
+        <p className="price-count">{number}</p>
       </div>
       <h3>Preview</h3>
       <div className='preview-question'>

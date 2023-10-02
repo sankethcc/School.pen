@@ -13,6 +13,7 @@ import User from "./Components/UserComponent/User";
 import UserProfile from "./Components/UserComponent/UserProfile/UserProfile";
 import Menu from "./Components/QuizP1/Menu/Menu";
 import CreateQuiz from "./Components/CreateQuiz/CreateQuiz";
+import MainPageOfQuiz from "./Components/MainPageOfQuiz";
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="user-profile" element={<UserProfile />} />
         <Route path="quiz" element={<CreateQuiz />} />
+        <Route path="/main-page-of-quiz" element={<MainPageOfQuiz />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       </BrowserRouter>

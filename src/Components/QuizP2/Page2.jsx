@@ -30,7 +30,7 @@ const Page2 = () => {
         <div className="main-wrapper">
             <Menu {...props} />
             <MainContainer {...props} />
-            <AddDetails />
+            {/* <AddDetails /> */}
         </div>
     </div>
   )

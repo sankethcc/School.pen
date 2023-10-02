@@ -14,7 +14,7 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ClearIcon from '@mui/icons-material/Clear';
 import { State } from "../Context/Provider"
 import axios from 'axios';
-const CreateQuiz = () => {
+const CreateQuiz = ({handleThreeDotMenu}) => {
   const { quest, setquest } = State();
   const [question, setQuestion] = useState({ text: '', image: null });
   const [options, setOptions] = useState([
@@ -163,7 +163,7 @@ const CreateQuiz = () => {
                 />
                 <label htmlFor="question-image-upload">
                 <IconButton component="span" aria-label="Upload image">
-                    <AddPhotoAlternateIcon />
+                    <AddPhotoAlternateIcon sx={{fontSize:'37px'}} />
                 </IconButton>
                 </label>
         </Box>
@@ -189,7 +189,7 @@ const CreateQuiz = () => {
                         margin="normal"
                     />
                     <Box display="flex" alignItems="center">
-                        {option.image && (
+                        {/* {option.image && (
                         <IconButton
                             onClick={() => handleDeleteImage('option')}
                             aria-label={`Delete image for Option ${index + 1}`}
@@ -197,11 +197,9 @@ const CreateQuiz = () => {
                         >
                             <DeleteOutlineIcon size="large" />
                         </IconButton>
-                        )}
+                        )} */}
 
-                        <IconButton onClick={() => handleDeleteOption(index)} aria-label={`Clear Option ${index + 1}`}>
-                        <DeleteOutlineIcon />
-                        </IconButton>
+
                         <input
                         type="file"
                         accept="image/*"
@@ -211,9 +209,12 @@ const CreateQuiz = () => {
                         />
                         <label htmlFor={`option-image-upload-${index}`}>
                         <IconButton component="span" aria-label={`Upload image for Option ${index + 1}`}>
-                            <AddPhotoAlternateIcon />
+                            <AddPhotoAlternateIcon sx={{fontSize:'37px'}} />
                         </IconButton>
                         </label>
+                        <IconButton onClick={() => handleDeleteOption(index)} aria-label={`Clear Option ${index + 1}`}>
+                        <DeleteOutlineIcon sx={{fontSize:'37px'}} />
+                        </IconButton>
                     </Box>
                     </Box>
                 ))}
@@ -221,7 +222,11 @@ const CreateQuiz = () => {
         <Typography sx={{cursor:'pointer', color:'#7A58E6', font:'700 20px Poppins', alignSelf:'end', mt:'32px'}} onClick={handleAddOption} aria-label="Add option" >Add Another Options</Typography>
     </Box>
     <Box sx={{display:'flex', width:"100%", mt:'56px', mb:'91px', justifyContent:'center'}}>
-      <Button variant="contained" onClick={handlePostQuestion} color="primary"
+      <Button variant="contained" onClick={()=>{
+        handlePostQuestion()
+        handleThreeDotMenu()
+      }} 
+        color="primary"
         sx={{
             width: "375px",
             borderRadius: "12px",

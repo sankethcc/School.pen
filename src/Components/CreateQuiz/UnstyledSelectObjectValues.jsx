@@ -4,14 +4,14 @@ import { Select, selectClasses } from '@mui/base/Select';
 import { Option, optionClasses } from '@mui/base/Option';
 import { OptionGroup } from '@mui/base/OptionGroup';
 import { Popper } from '@mui/base/Popper';
-import { styled } from '@mui/system';
+import { fontSize, styled } from '@mui/system';
 // import { useState } from 'react';
 import {State} from "../Context/Provider"
 
 export default function UnstyledSelectObjectValues({dropdownName,listArray,add,value }) {
   const style = dropdownName == "Language" ? "#fff" : '#F5F6F7'
   const { quest, setquest } = State();
- 
+  
   return (
     <CustomSelect onChange={(event, newValue) =>setquest((prevData) => {
       return {
@@ -21,10 +21,11 @@ export default function UnstyledSelectObjectValues({dropdownName,listArray,add,v
     })} sx={{background:`${style}`}} placeholder={dropdownName} >
         {listArray.map((itemVal, index) => (
           <StyledOption
+            sx={{}}
             key={index} value={itemVal} >{itemVal}
           </StyledOption>
                 ))}
-        {add?<StyledOption sx={{color:'blue'}}>Add {dropdownName}</StyledOption>:null}
+        {add?<StyledOption  sx={{color:'blue'}}>Add New</StyledOption>:null}
     </CustomSelect>
   );
 }
@@ -104,7 +105,7 @@ const StyledButton = styled('button')(
   font-size: 20px;
   box-sizing: border-box;
   width: 100%;
-  padding: 14px 28px;
+  padding: 14px 10px 14px 21px;
   border-radius: 12px;
   text-align: left;
   line-height: 1.5;
