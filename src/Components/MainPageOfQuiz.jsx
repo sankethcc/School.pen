@@ -33,8 +33,8 @@ const MainPageOfQuiz = () => {
   
 
 
-    const propsForMenu = {toggle, close, toggleMenu, dBlock, handleOpenPage, handleOpenPageNameUpdate  }
-    const propsForCreateQuiz = {openPageName, handleOpenPageNameUpdate, openPage, handleOpenPage }
+    const propsForMenu = {toggle, close, toggleMenu, dBlock, handleOpenPage, handleOpenPageNameUpdate, openPage  }
+    const propsForCreateQuiz = {openPageName, openPage, handleOpenPage, handleOpenPageNameUpdate }
 
   return (
     <Box sx={{display:'flex'}}>
