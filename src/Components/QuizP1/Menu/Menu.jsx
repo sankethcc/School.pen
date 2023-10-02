@@ -4,10 +4,13 @@ import Logo from '../assets/logo.png'
 import Test from '../assets/Test.png'
 import Exam from '../assets/Exam.png'
 import User from '../assets/User.png'
+import Test707070 from './Test (3).png'
+import TestWhite from './Test (2).png'
 import { Box, List, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {State} from "../../Context/Provider"
-
+import PersonIcon from '@mui/icons-material/Person';
+import DescriptionIcon from '@mui/icons-material/Description';
 const Menu = ({ dBlock, handleOpenPage, handleOpenPageNameUpdate, openPage }) => {
   const navigate = useNavigate();
   // const [activeTab, setActiveTab] = useState('tab1');
@@ -32,7 +35,9 @@ const Menu = ({ dBlock, handleOpenPage, handleOpenPageNameUpdate, openPage }) =>
     sx={{
       background:'#fff',
       p:'18px 32px',
-      height:'100vh',
+      height:'100dvh',
+      position:'sticky',
+      top:'0',
       width:{
         md:'21%',
         lg:'15%',
@@ -58,7 +63,9 @@ const Menu = ({ dBlock, handleOpenPage, handleOpenPageNameUpdate, openPage }) =>
             handleOpenPageNameUpdate("Create Quiz")
           }} 
           >
-            <img src={Test} alt="" className="menuelog " />
+            <img src={activeTab==="tab1"?TestWhite:Test707070} alt="" className="menuelog " />
+            
+
             <p>Quiz</p>
           </li>
           <li className={`tab ${activeTab === 'tab2' ? 'active' : ''}`} 
@@ -67,7 +74,9 @@ const Menu = ({ dBlock, handleOpenPage, handleOpenPageNameUpdate, openPage }) =>
               handleOpenPage('Create Exam')
               handleOpenPageNameUpdate("Create Exam")
             }}>
-            <img src={Exam} className="menuelog" alt="" />
+            {/* <img src={Exam} className="menuelog" alt="" /> */}
+            <DescriptionIcon sx={{fontSize:'30px'}} htmlColor={`${activeTab ==='tab2'?"#fff":"#707070"}`} />
+            
             <p>Exam</p>
           </li>
 
@@ -77,7 +86,8 @@ const Menu = ({ dBlock, handleOpenPage, handleOpenPageNameUpdate, openPage }) =>
             handleOpenPage('Assign User')
             handleOpenPageNameUpdate("Assign User")
             }}>
-            <img src={User} className="menuelog" alt="" />
+            {/* <img src={User} className="menuelog" alt="" /> */}
+            <PersonIcon sx={{fontSize:'30px'}} htmlColor={`${activeTab ==='tab3'?"#fff":"#707070"}`} />
             <p>Assign user</p>
           </li>
           {(openPage==="Assign User"&&"Create User"&&"User Profile")?

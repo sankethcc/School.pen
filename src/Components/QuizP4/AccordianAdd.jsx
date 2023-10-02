@@ -22,6 +22,7 @@ export default function AccordianAdd({ subject, SubSubject, topics }) {
           id="panel1a-header"
           sx={{
             borderBottom: "none",
+            m:'0px',
             marginBottom: "-1px",
             display: "flex",
             justifyContent: "space-between",
@@ -62,7 +63,7 @@ export default function AccordianAdd({ subject, SubSubject, topics }) {
                     {itemVal}
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{ borderLeft: "1px solid #BEBEBE", marginLeft:'50px' }}>
+                <AccordionDetails sx={{p:'0px', pl:'40px', mb:'16px', borderLeft: "1px solid #BEBEBE", marginLeft:'50px' }}>
                   {topics.map((topic, index) => (
                     <Typography sx={{ fontSize: "24px", color: "#707070", fontWeight:'400' }}>
                       {topic}

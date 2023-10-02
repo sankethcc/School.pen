@@ -29,7 +29,7 @@ const AddSubject = ({toggleMenu, close}) => {
         <Box
         sx={{
             backgroundColor:'#fff',
-            p:'12px 48px',
+            p:'0px 48px',
             borderRadius:'12px',
             mt:'32px',
             fontWeight:'700'
@@ -44,7 +44,7 @@ const AddSubject = ({toggleMenu, close}) => {
         <Box
         sx={{
             backgroundColor:'#fff',
-            p:'12px 48px',
+            p:'0px 48px',
             borderRadius:'12px',
             mt:'32px',
             fontWeight:'700'
@@ -61,7 +61,7 @@ const AddSubject = ({toggleMenu, close}) => {
         <Box
         sx={{
             backgroundColor:'#fff',
-            p:'12px 48px',
+            p:'0px 48px',
             borderRadius:'12px',
             mt:'32px',
             fontWeight:'700'
@@ -78,7 +78,7 @@ const AddSubject = ({toggleMenu, close}) => {
         <Box
         sx={{
             backgroundColor:'#fff',
-            p:'12px 48px',
+            p:'0px 48px',
             borderRadius:'12px',
             mt:'32px',
             fontWeight:'700'

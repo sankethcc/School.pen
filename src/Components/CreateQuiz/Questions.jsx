@@ -70,9 +70,9 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
   const handleImageUpload = (event, index, type) => {
     const newOptions = [...options];
     if (type === 'question') {
-      setQuestion({ ...question, image: URL.createObjectURL(event.target.files[0]) });
+      setQuestion({ ...question, image: event.target.files[0] });
     } else if (type === 'option') {
-      newOptions[index].image = URL.createObjectURL(event.target.files[0]);
+      newOptions[index].image = event.target.files[0];
       setOptions(newOptions);
     }
   };

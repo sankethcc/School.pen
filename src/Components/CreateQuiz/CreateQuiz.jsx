@@ -47,6 +47,7 @@ const CreateQuiz = ({handleOpenPage,openPageName, openPage, handleOpenPageNameUp
             md:'79%',
             lg:'85%'
         }, 
+        minHeight:'100dvh',
         background:'#F5F6F7'
     }}>
         <Box sx={{
