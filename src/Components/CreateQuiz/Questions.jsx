@@ -161,7 +161,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
                 />
                 <label htmlFor="question-image-upload">
                 <IconButton component="span" aria-label="Upload image">
-                    <AddPhotoAlternateIcon />
+                    <AddPhotoAlternateIcon sx={{fontSize:'37px'}} />
                 </IconButton>
                 </label>
         </Box>
@@ -187,7 +187,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
                         margin="normal"
                     />
                     <Box display="flex" alignItems="center">
-                        {option.image && (
+                        {/* {option.image && (
                         <IconButton
                             onClick={() => handleDeleteImage('option')}
                             aria-label={`Delete image for Option ${index + 1}`}
@@ -195,11 +195,9 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
                         >
                             <DeleteOutlineIcon size="large" />
                         </IconButton>
-                        )}
+                        )} */}
 
-                        <IconButton onClick={() => handleDeleteOption(index)} aria-label={`Clear Option ${index + 1}`}>
-                        <DeleteOutlineIcon />
-                        </IconButton>
+
                         <input
                         type="file"
                         accept="image/*"
@@ -209,9 +207,12 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
                         />
                         <label htmlFor={`option-image-upload-${index}`}>
                         <IconButton component="span" aria-label={`Upload image for Option ${index + 1}`}>
-                            <AddPhotoAlternateIcon />
+                            <AddPhotoAlternateIcon sx={{fontSize:'37px'}} />
                         </IconButton>
                         </label>
+                        <IconButton onClick={() => handleDeleteOption(index)} aria-label={`Clear Option ${index + 1}`}>
+                        <DeleteOutlineIcon sx={{fontSize:'37px'}} />
+                        </IconButton>
                     </Box>
                     </Box>
                 ))}

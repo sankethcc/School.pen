@@ -2,44 +2,78 @@ import React, { useState } from 'react'
 import DropDown from '../QuizP1/MainContant/DropDown'
 import { Link, NavLink } from 'react-router-dom';
 import axios from "axios";
+import UnstyledSelectObjectValues from '../CreateQuiz/UnstyledSelectObjectValues';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import { IconButton } from '@mui/material';
 
 const AddDetails = ({handleThreeDotMenu}) => {
   const [listarray, setlistarray] = useState(["Science", "Mathematics", "History"])
-  const [sub, setsub] = useState({
-    name: "",
-    topic: "",
-    subt1: "",
-    subt2: ""
-  });
+  // const [sub, setSub] = useState({
+  //   name: "",
+  //   topic: "",
+  //   subt1: "",
+  //   subt2: ""
+  // });
+
+  const [sub, setSub] = useState([
+    {name: '', image: null},
+    {topic: '', image: null},
+    {subt1: '', image: null},
+    {subt2: '', image: null},
+  ])
+  
+  // const InputEvent = (event) => {
+  //   const value = event.target.value;
+  //   const name = event.target.name;
+  //   setSub((prevData) => {
+  //     return {
+  //       ...prevData,
+  //       [name]: value,
+  //     };
+  //   });
+  // };
   const InputEvent = (event) => {
-    const value = event.target.value;
-    const name = event.target.name;
-    setsub((prevData) => {
-      return {
-        ...prevData,
-        [name]: value,
-      };
-    });
+    const newSub = [...sub];
+    newSub[0].name = event.target.value;
+    newSub[1].topic = event.target.value;
+    newSub[2].subt1 = event.target.value;
+    newSub[3].subt2 = event.target.value;
+    setSub(newSub)
   };
+  const handleImageUpload = (event, index, type) => {
+    const newSub = [...sub];
+    if (type === 'sub') {
+       newSub[0].image = URL.createObjectURL(event.target.files[0])
+    } else if(type === 'topic') {
+      newSub[1].image = URL.createObjectURL(event.target.files[0])
+    } else if(type === 'subt1') {
+      newSub[2].image = URL.createObjectURL(event.target.files[0])
+    } else if(type === 'subt2') {
+      newSub[3].image = URL.createObjectURL(event.target.files[0])
+    }
+    setSub(newSub)
+  };
+  
 
   const submithandler = () => {
-    const formData = new FormData();
-    formData.append('subject', sub.name);
-    formData.append('topic', sub.topic);
-    formData.append('subtopic', [sub.subt1,sub.subt2]);
+    // const formData = new FormData();
+    // formData.append('subject', sub.name);
+    // formData.append('topic', sub.topic);
+    // formData.append('subtopic', [sub.subt1,sub.subt2]);
 
-    axios
-    .post("http://localhost:5000/add_Subject_quizz", formData)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log("Data added successfully");
-          } else {
-            alert("Error occured");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    // axios
+    // .post("http://localhost:5000/add_Subject_quizz", formData)
+    //     .then((response) => {
+    //       if (response.status === 200) {
+    //         console.log("Data added successfully");
+    //       } else {
+    //         alert("Error occured");
+    //       }
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    console.log(sub)
 
   }
   const [addSubject, setAddSubject] = useState(false);
@@ -68,45 +102,107 @@ const AddDetails = ({handleThreeDotMenu}) => {
               
             </ul>
       </div>
+      <UnstyledSelectObjectValues dropdownName={"Add New or select existing"} listArray={["Science", "Mathematics", "History"]} add={true} value={"Subject"}/>
       {addSubject === true?
       <div className='addSub'>
         <div className='subtopic'>
           <text className="textc">Subject</text>
+          <div className='input-wrapper'>
           <input name="name"
                 type="text"
                 value={sub.name}
                 onChange={InputEvent}
                 placeholder='New sub name ABC'>
           </input>
+          <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageUpload(e, null, 'sub')}
+                style={{ display: 'none' }}
+                id="sub-image-upload"
+                />
+                <label htmlFor="sub-image-upload">
+                <IconButton component="span" aria-label="Upload image">
+                    <AddPhotoAlternateIcon />
+                </IconButton>
+                </label>
+
+          </div>
         </div>
         <div className='subtopic'>
           <text className="textc">Topic1</text>
+          <div className='input-wrapper'>
           <input name="topic"
                 type="text"
                 value={sub.topic}
                 onChange={InputEvent}
                 placeholder='Psychology'></input>
+          <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageUpload(e, null, 'topic')}
+                style={{ display: 'none' }}
+                id="topic-image-upload"
+                />
+                <label htmlFor="topic-image-upload">
+                <IconButton component="span" aria-label="Upload image">
+                    <AddPhotoAlternateIcon />
+                </IconButton>
+                </label>
+
+          </div>
         </div>
         <div className='subtopic'>
-          <text className="textc">SubTopic 1.1</text>
+          <div className='subtopic-heading'> 
+            <text className="textc">SubTopic 1.1</text>
+            <text className='add-new'>Add new subtopic</text>
+          </div>
           <div className='subtopicl'>
             <input name="subt1"
                 type="text"
                 value={sub.subt1}
                 onChange={InputEvent}
-                placeholder='Psychology basics'></input>
-            <text>Add new subtopic</text>
+                placeholder='Psychology basics' 
+            />
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageUpload(e, null, 'subt1')}
+                style={{ display: 'none' }}
+                id="subt1-image-upload"
+                />
+                <label htmlFor="subt1-image-upload">
+                <IconButton component="span" aria-label="Upload image">
+                    <AddPhotoAlternateIcon />
+                </IconButton>
+                </label>
           </div>
         </div>
         <div className='subtopic'>
-          <text className="textc">SubTopic 1.2</text>
+          <div className='subtopic-heading'> 
+            <text className="textc">SubTopic 1.1</text>
+            <text className='add-new'>Add new subtopic</text>
+          </div>
           <div className='subtopicl'>
             <input name="subt2"
                 type="text"
                 value={sub.subt2}
                 onChange={InputEvent}
-                placeholder='Psychology disorders'></input>
-            <text>Add new subtopic</text>
+                placeholder='Psychology disorders'
+            />
+            <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => handleImageUpload(e, null, 'subt2')}
+                style={{ display: 'none' }}
+                id="subt2-image-upload"
+                />
+                <label htmlFor="subt2-image-upload">
+                <IconButton component="span" aria-label="Upload image">
+                    <AddPhotoAlternateIcon />
+                </IconButton>
+                </label>
+
           </div>
         </div>
         <div>
