@@ -3,7 +3,7 @@ import DropDown from '../QuizP1/MainContant/DropDown'
 import { Link, NavLink } from 'react-router-dom';
 import axios from "axios";
 
-const AddDetails = () => {
+const AddDetails = ({handleThreeDotMenu}) => {
   const [listarray, setlistarray] = useState(["Science", "Mathematics", "History"])
   const [sub, setsub] = useState({
     name: "",
@@ -64,7 +64,7 @@ const AddDetails = () => {
                     <Link className="dropdown-item" onClick={toggleAddSubject}>{itemVal}</Link>
                     </li>
                 ))}
-              <li><NavLink onClick={toggleAddSubject} className="dropdown-item add-item" to={"/page2"}>Add New</NavLink></li>
+              <li><NavLink onClick={toggleAddSubject} className="dropdown-item add-item">Add New</NavLink></li>
               
             </ul>
       </div>
@@ -113,6 +113,7 @@ const AddDetails = () => {
           <button onClick={()=>{
             submithandler()
             toggleAddSubject()
+            handleThreeDotMenu()
             }}   style={{float: "right"}}>
               <text className='btnt'>Add new topic</text>
             

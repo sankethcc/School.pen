@@ -26,8 +26,8 @@ const TotalUser = () => {
   }, []);
     
   return (
-    <div className="side-details">
-      <Box sx={{mb:'32px'}} className="amount-wrapper">
+    <Box >
+      <Box sx={{m:'0px 12px 32px 12px'}} className="amount-wrapper">
         <p className="price-heading">Total Users</p>
         <p className="price-count">{user.length}</p>
       </Box>
@@ -47,7 +47,7 @@ const TotalUser = () => {
         
         
       </Box>
-    </div>
+    </Box>
   )
 }
 

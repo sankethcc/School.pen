@@ -6,9 +6,9 @@ import { Box, TextField } from '@mui/material'
 
 const AddSubject = ({toggleMenu, close}) => {
   return (
-    <div className="main-container">
-        <ProfileWrapper toggleMenu={toggleMenu} close={close} name="Create Subject" />
-        <Box
+    <Box >
+        {/* <ProfileWrapper toggleMenu={toggleMenu} close={close} name="Create Subject" /> */}
+        {/* <Box
         sx={{
           display:'flex',
           justifyContent:'space-between',
@@ -24,7 +24,7 @@ const AddSubject = ({toggleMenu, close}) => {
           
         }}
         />
-        </Box>
+        </Box> */}
         
         <Box
         sx={{
@@ -92,7 +92,7 @@ const AddSubject = ({toggleMenu, close}) => {
         />
         </Box>
         
-    </div>
+    </Box>
   )
 }
 

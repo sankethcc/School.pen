@@ -14,7 +14,7 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ClearIcon from '@mui/icons-material/Clear';
 import { State } from "../Context/Provider"
 import axios from 'axios';
-const CreateQuiz = () => {
+const CreateQuiz = ({handleThreeDotMenu}) => {
   const { quest, setquest } = State();
   const [question, setQuestion] = useState({ text: '', image: null });
   const [options, setOptions] = useState([
@@ -219,7 +219,11 @@ const CreateQuiz = () => {
         <Typography sx={{cursor:'pointer', color:'#7A58E6', font:'700 20px Poppins', alignSelf:'end', mt:'32px'}} onClick={handleAddOption} aria-label="Add option" >Add Another Options</Typography>
     </Box>
     <Box sx={{display:'flex', width:"100%", mt:'56px', mb:'91px', justifyContent:'center'}}>
-      <Button variant="contained" onClick={handlePostQuestion} color="primary"
+      <Button variant="contained" onClick={()=>{
+        handlePostQuestion()
+        handleThreeDotMenu()
+      }} 
+        color="primary"
         sx={{
             width: "375px",
             borderRadius: "12px",
