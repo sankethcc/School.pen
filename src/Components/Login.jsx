@@ -21,7 +21,7 @@ const Login = () => {
     backgroundSize: "cover",
     backgroundRepeat: "no-repeat",
     backgroundColor: "#7A58E6",
-    height: "100vh",
+    minHeight: "100dvh",
   };
   const paraStyle = {
     color: `var(--Dark-grey, #707070)`,
