@@ -100,7 +100,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     // const user = localStorage.getItem('user')
     const creatorId = Number("6516da2c4cef1a86034d8f01");
     axios
-    .post(`http://localhost:5000/create_quizz/${creatorId}`, formData)
+    .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
         .then((response) => {
           if (response.status === 201) {
             console.log("Data added successfully");
