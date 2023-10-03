@@ -37,7 +37,7 @@ const MainPageOfQuiz = () => {
     const propsForCreateQuiz = {openPageName, openPage, handleOpenPage, handleOpenPageNameUpdate }
 
   return (
-    <Box sx={{display:'flex'}}>
+    <Box sx={{display:'flex', alignItems:'start'}}>
         <Menu {...propsForMenu} />
         <CreateQuiz {...propsForCreateQuiz} />
     </Box>

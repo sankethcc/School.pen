@@ -31,25 +31,27 @@ const AddDetails = ({handleThreeDotMenu}) => {
   //       [name]: value,
   //     };
   //   });
-  //};
-  const InputEvent = (event) => {
-    const newSub = [...sub];
-    newSub[0].name = event.target.value;
-    newSub[1].topic = event.target.value;
-    newSub[2].subt1 = event.target.value;
-    newSub[3].subt2 = event.target.value;
-    setSub(newSub)
+  // };
+
+
+  const InputEvent = (event, index) => {
+    const { value, name } = event.target;
+    setSub((prevData) => {
+      const updatedSub = [...prevData]; 
+      updatedSub[index] = { ...updatedSub[index], [name]: value };
+      return updatedSub;
+    });
   };
   const handleImageUpload = (event, index, type) => {
     const newSub = [...sub];
     if (type === 'sub') {
-       newSub[0].image = URL.createObjectURL(event.target.files[0])
+      newSub[0].image = event.target.files[0]
     } else if(type === 'topic') {
-      newSub[1].image = URL.createObjectURL(event.target.files[0])
+      newSub[1].image = event.target.files[0]
     } else if(type === 'subt1') {
-      newSub[2].image = URL.createObjectURL(event.target.files[0])
+      newSub[2].image = event.target.files[0]
     } else if(type === 'subt2') {
-      newSub[3].image = URL.createObjectURL(event.target.files[0])
+      newSub[3].image = event.target.files[0]
     }
     setSub(newSub)
   };
@@ -115,7 +117,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
           <input name="name"
                 type="text"
                 value={sub.name}
-                onChange={InputEvent}
+                onChange={(e)=>InputEvent(e,0)}
                 placeholder='New sub name ABC'>
           </input>
           <input
@@ -139,7 +141,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
           <input name="topic"
                 type="text"
                 value={sub.topic}
-                onChange={InputEvent}
+                onChange={(e)=>InputEvent(e,1)}
                 placeholder='Psychology'></input>
           <input
                 type="file"
@@ -165,7 +167,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
             <input name="subt1"
                 type="text"
                 value={sub.subt1}
-                onChange={InputEvent}
+                onChange={(e)=>InputEvent(e,2)}
                 placeholder='Psychology basics' 
             />
               <input
@@ -191,7 +193,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
             <input name="subt2"
                 type="text"
                 value={sub.subt2}
-                onChange={InputEvent}
+                onChange={(e)=>InputEvent(e,3)}
                 placeholder='Psychology disorders'
             />
             <input
