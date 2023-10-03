@@ -70,9 +70,9 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
   const handleImageUpload = (event, index, type) => {
     const newOptions = [...options];
     if (type === 'question') {
-      setQuestion({ ...question, image: URL.createObjectURL(event.target.files[0]) });
+      setQuestion({ ...question, image: event.target.files[0] });
     } else if (type === 'option') {
-      newOptions[index].image = URL.createObjectURL(event.target.files[0]);
+      newOptions[index].image = event.target.files[0];
       setOptions(newOptions);
     }
   };
@@ -94,14 +94,14 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
       const optionText = options[i].text;
       const optionImageInput = options[i].image;
       formData.append(`option_${i + 1}`, optionText);
-      formData.append(`option_${i}_image`, optionImageInput);
+      formData.append(`option_${i + 1}_image`, optionImageInput);
       const isAnswer = options[i].answer;
       formData.append(`is_answer_${i}`, isAnswer.toString());
     }
     
     
     // const user = localStorage.getItem('user')
-    const creatorId = Number("6516da2c4cef1a86034d8f01");
+    const creatorId = Number("651bc61ecd7793745f619cfe");
     axios
     .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
         .then((response) => {
