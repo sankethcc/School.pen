@@ -17,10 +17,10 @@ const AddSubject =  ({ toggleMenu, close }) => {
                 // console.log(data);
                 setsubject(response.data);
                 // const objectSet = new Set(subjects.map(JSON.stringify));
-                console.log(response.data)
-
+                // const outputJSON = JSON.stringify(response.data, null, 2);
+                // console.log(outputJSON)
                 // var wordsArray = response.data.split('}, {"_id"');
-                var wordsArray = Array.from(response.data)
+                // var wordsArray = Array.from(response.data)
                 // console.log(wordsArray);
                                    
             }

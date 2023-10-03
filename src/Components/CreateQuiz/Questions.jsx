@@ -70,9 +70,9 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
   const handleImageUpload = (event, index, type) => {
     const newOptions = [...options];
     if (type === 'question') {
-      setQuestion({ ...question, image: event.target.files[0] });
+      setQuestion({ ...question, image: URL.createObjectURL(event.target.files[0]) });
     } else if (type === 'option') {
-      newOptions[index].image = event.target.files[0];
+      newOptions[index].image = URL.createObjectURL(event.target.files[0]);
       setOptions(newOptions);
     }
   };
@@ -87,20 +87,23 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     formData.append('subtopic', quest.Sub_topic);
     formData.append('level', quest.Level);
     formData.append('quiz_type', quest.Quiz_Type);
-    console.log(formData)
+    formData.append('question', question.text);
+    formData.append('question_image', question.image);
 
-    const questionData = {
-      question: question.text,
-      question_image: question.image, 
-      options:options
-    };
-
-    formData.append('question_container', JSON.stringify(questionData));
-    // console.log(formData)
+    for (let i = 0; i < options.length; i++) {
+      const optionText = options[i].text;
+      const optionImageInput = options[i].image;
+      formData.append(`option_${i + 1}`, optionText);
+      formData.append(`option_${i}_image`, optionImageInput);
+      const isAnswer = options[i].answer;
+      formData.append(`is_answer_${i}`, isAnswer.toString());
+    }
+    
+    
     // const user = localStorage.getItem('user')
     const creatorId = Number("6516da2c4cef1a86034d8f01");
     axios
-    .post(`http://localhost:5000/create_quizz/${creatorId}`, formData)
+    .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
         .then((response) => {
           if (response.status === 201) {
             console.log("Data added successfully");
