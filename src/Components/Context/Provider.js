@@ -10,15 +10,23 @@ const Provider = ({ children }) => {
     Sub_topic: "",
     Level: "",
     Quiz_Type: "",
-    Language:"English",
+    Language: "English",
+    
   });
+
+  const [prevnote, setprevnote] = useState([{
+    pquestion: "",
+    poptions:[],
+  }])
   return (
     <ChatContext.Provider
       value={{
               activeTab,
               setActiveTab,
               quest,
-              setquest
+              setquest,
+              prevnote,
+              setprevnote
       }}
     >
       {children}

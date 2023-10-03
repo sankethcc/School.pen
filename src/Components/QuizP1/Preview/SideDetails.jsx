@@ -13,7 +13,7 @@ const SideDetails = ({heading, number}) => {
         <img src={edits} className='edit-logo' alt="" />
         <p>Tadoba national park known for sheltering tiger, panther and bear is located in: </p>
         <ul>
-          <li>Assam</li>
+          <li>Assam1</li>
           <li>Chandrapur</li>
           <li>Karnataka</li>
           <li>Tamil Nadu</li>

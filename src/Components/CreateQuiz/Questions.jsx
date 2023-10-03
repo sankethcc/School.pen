@@ -14,8 +14,9 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import ClearIcon from '@mui/icons-material/Clear';
 import { State } from "../Context/Provider"
 import axios from 'axios';
+
 const CreateQuiz = ({handleThreeDotMenu}) => {
-  const { quest, setquest } = State();
+  const { quest,prevnote, setprevnote} = State();
   const [question, setQuestion] = useState({ text: '', image: null });
   const [options, setOptions] = useState([
     { text: '', image: null ,answer: false},
@@ -90,6 +91,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     formData.append('question', question.text);
     formData.append('question_image', question.image);
 
+    const popt = [],QUE=question.text;
     for (let i = 0; i < options.length; i++) {
       const optionText = options[i].text;
       const optionImageInput = options[i].image;
@@ -97,6 +99,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
       formData.append(`option_${i + 1}_image`, optionImageInput);
       const isAnswer = options[i].answer;
       formData.append(`is_answer_${i}`, isAnswer.toString());
+      popt.push(optionText);
     }
     
     
@@ -106,14 +109,18 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
         .then((response) => {
           if (response.status === 201) {
+            const newobj={pquestion:QUE, poptions:popt }
+            setprevnote(oldArray => [ newobj,...oldArray]);
             console.log("Data added successfully");
+            
           } else {
             alert("Error occured");
           }
         })
         .catch((err) => {
           console.log(err.response.data);
-    });
+        });
+    console.log(prevnote);
     // console.log('Posted Question:', { question, options, correctAnswerIndex });
   };
 
