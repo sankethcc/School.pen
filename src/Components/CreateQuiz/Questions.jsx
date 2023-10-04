@@ -101,7 +101,10 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
       formData.append(`is_answer_${i}`, isAnswer.toString());
       popt.push(optionText);
     }
-    
+    const newobj = { pquestion: QUE, poptions: popt }
+    setprevnote(oldArray => [newobj, ...oldArray]);
+    console.log(newobj)
+    console.log(prevnote);
     
     // const user = localStorage.getItem('user')
     const creatorId = Number("651276d1abd5f9a259c30025");
@@ -109,8 +112,6 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
         .then((response) => {
           if (response.status === 201) {
-            const newobj={pquestion:QUE, poptions:popt }
-            setprevnote(oldArray => [ newobj,...oldArray]);
             console.log("Data added successfully");
             
           } else {
@@ -120,7 +121,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
         .catch((err) => {
           console.log(err.response.data);
         });
-    console.log(prevnote);
+    
     // console.log('Posted Question:', { question, options, correctAnswerIndex });
   };
 
