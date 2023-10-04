@@ -104,7 +104,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     
     
     // const user = localStorage.getItem('user')
-    const creatorId = Number("651bc61ecd7793745f619cfe");
+    const creatorId = Number("651276d1abd5f9a259c30025");
     axios
     .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
         .then((response) => {
