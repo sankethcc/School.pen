@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Box, FormGroup, Input, Button } from '@mui/material'
-
+import axios from 'axios';
 
 const AddNewUser = ({user, setUser, toggleShowAddUser}) => {
     // const [user, setUser] = useState([])
@@ -35,9 +35,27 @@ const AddNewUser = ({user, setUser, toggleShowAddUser}) => {
           email: note.email,
           password: note.password
         };
-      
-        setUser([...user, temp]);
-        console.log(user);
+        
+        axios
+        .post("http://localhost:5000/user", {
+          name: note.name,
+          email: note.email,
+          password: note.password
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            // Success
+            setUser([...user, temp]);
+            console.log(response);
+          } else {
+            alert("Error occured");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    
+        
       };
   return (
     <Box>

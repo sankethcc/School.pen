@@ -8,7 +8,7 @@ import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
 
 const UserData = () => {
   return (
-    <Box sx={{p:'55px 40px', textAlign:'center', width:{sx:'27%', lg:"27%"}}}>
+    <Box>
         <Box sx={{display:'flex', alignItems:'center', flexDirection:'column', mb:'35px' }}>
           <Avatar src={userImg} 
             alt="User Image"

@@ -1,10 +1,11 @@
 import React from "react";
-
+import { Box } from '@mui/material'
 
 import { useState } from "react";
 import Menu from "../QuizP1/Menu/Menu";
 import SideDetails from "../QuizP1/Preview/SideDetails";
 import MiddleColumn from "./MiddleColumn";
+
 
 
 const Exam = () => {
@@ -31,11 +32,11 @@ const Exam = () => {
   }
 
   return (
-    <div className="main-wrapper">
+    <Box sx={{width:'100%', display:'flex'}} >
       <Menu {...props} />
       <MiddleColumn />
       <SideDetails />
-    </div>
+    </Box>
   );
 };
 

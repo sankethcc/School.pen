@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Box } from '@mui/material'
 import Login from "./Components/Login";
 import ErrorPage from "./Pages/ErrorPage";
 import './styles/quiz.css'
@@ -10,6 +11,9 @@ import CreateSubject from "./Components/QuizP4/CreateSubject";
 import Exam from "./Components/Exam/Exam";
 import User from "./Components/UserComponent/User";
 import UserProfile from "./Components/UserComponent/UserProfile/UserProfile";
+import Menu from "./Components/QuizP1/Menu/Menu";
+import CreateQuiz from "./Components/CreateQuiz/CreateQuiz";
+import MainPageOfQuiz from "./Components/MainPageOfQuiz";
 
 
 function App() {
@@ -19,13 +23,16 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login /> } />
-        <Route path="/main" element={<Quiz />} />
+        {/* <Route path="/main" element={<Quiz />} />
         <Route path="/page2" element={<Page2 />} />
         <Route path="/page3" element={<Page3 />} />
         <Route path="/page4" element={<CreateSubject />} />
         <Route path="/exam" element={<Exam />} />
         <Route path="/user" element={<User />} />
         <Route path="user-profile" element={<UserProfile />} />
+        <Route path="quiz" element={<CreateQuiz />} /> */}
+        <Route path="/main" element={<MainPageOfQuiz />} />
+
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       </BrowserRouter>

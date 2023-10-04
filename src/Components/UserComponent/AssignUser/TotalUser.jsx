@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
-import React, { useState } from 'react'
-
+import React, { useState ,useEffect} from 'react'
+import axios from 'axios'
 import AddNewUser from './AddNewUser'
 import UserList from './UserList'
 
@@ -13,10 +13,21 @@ const TotalUser = () => {
         setShowAddUser(prevShowAddUser => !prevShowAddUser);
     };
       
+    useEffect(() => {
+    axios.get(`http://localhost:5000/user`).then(
+        // &limit=10
+    (response) => {
+        setUser(response.data);
+        console.log(response.data);
+    }
+  ).catch((error) => {
+      console.error(error);
+    });
+  }, []);
     
   return (
-    <div className="side-details">
-      <Box sx={{mb:'32px'}} className="amount-wrapper">
+    <Box >
+      <Box sx={{m:'0px 12px 32px 12px'}} className="amount-wrapper">
         <p className="price-heading">Total Users</p>
         <p className="price-count">{user.length}</p>
       </Box>
@@ -36,7 +47,7 @@ const TotalUser = () => {
         
         
       </Box>
-    </div>
+    </Box>
   )
 }
 
