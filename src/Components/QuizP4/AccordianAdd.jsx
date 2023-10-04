@@ -6,72 +6,38 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box } from "@mui/material";
 
-export default function AccordianAdd({ subject, SubSubject, topics }) {
+export default function AccordianAdd({ subject, topics }) {
+
+  const subjectTopics = Object.keys(topics)
+ 
+
   return (
     <Box sx={{}}>
-      <Accordion
-        sx={{
-          border: "none",
-          boxShadow: "none",
-          backgroundColor: "transparent",
-        }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon sx={{}} />}
-          aria-controls="panel1a-content"
-          id="panel1a-header"
-          sx={{
-            borderBottom: "none",
-            m:'0px',
-            marginBottom: "-1px",
-            display: "flex",
-            justifyContent: "space-between",
-            width: "0",
-          }}
-        >
-          <Typography sx={{ fontSize: "28px", color: "#707070", fontWeight:'700'}}>
-            {subject}
-          </Typography>
+      <Accordion sx={{border: "none",boxShadow: "none",backgroundColor: "transparent",}}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon sx={{}} />} aria-controls="panel1a-content" id="panel1a-header" sx={{borderBottom: "none",m: "0px",marginBottom: "-1px",display: "flex",justifyContent: "space-between",width: "0"}}>
+          <Typography sx={{ fontSize: "28px", color: "#707070", fontWeight: "700" }}>{subject}</Typography>
         </AccordionSummary>
         <AccordionDetails sx={{ paddingLeft: "45px" }}>
           <Typography>
-            {SubSubject.map((itemVal, index) => (
-              <Accordion
-                sx={{
-                  border: "none",
-                  boxShadow: "none",
-                  backgroundColor: "transparent",
-                  textWrap: "nowrap",
-                  "::before": {
-                    background: "transparent",
-                  },
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1a-content"
-                  id="panel1a-header"
-                  sx={{
-                    borderBottom: "none",
-                    marginBottom: "-1px",
-                    display: "flex",
-                    justifyContent: "space-between",
-                    width: "0",
-                  }}
-                >
+            {subjectTopics.map((subjectTopic, i) => {
+              const subTopicOfSubTopic = Object.keys(topics[subjectTopic].subtopics)
+              return (
+              <Accordion key={i} sx={{border: "none",boxShadow: "none",backgroundColor: "transparent",textWrap: "nowrap","::before": {background: "transparent",},}}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} aria-controls="panel1a-content" id="panel1a-header"sx={{borderBottom: "none",marginBottom: "-1px",display: "flex",justifyContent: "space-between",width: "0",}}>
                   <Typography sx={{ fontSize: "28px", color: "#707070" }}>
-                    {itemVal}
+                    {subjectTopic}
                   </Typography>
                 </AccordionSummary>
-                <AccordionDetails sx={{p:'0px', pl:'40px', mb:'16px', borderLeft: "1px solid #BEBEBE", marginLeft:'50px' }}>
-                  {topics.map((topic, index) => (
-                    <Typography sx={{ fontSize: "24px", color: "#707070", fontWeight:'400' }}>
+                <AccordionDetails sx={{p: "0px",pl: "40px",mb: "16px",borderLeft: "1px solid #BEBEBE",marginLeft: "50px",}}>
+                  {subTopicOfSubTopic.map((topic, index) => (
+                    <Typography key={index} sx={{fontSize: "24px",color: "#707070",fontWeight: "400",}}>
                       {topic}
                     </Typography>
                   ))}
                 </AccordionDetails>
               </Accordion>
-            ))}
+            );
+          })}
           </Typography>
         </AccordionDetails>
       </Accordion>

@@ -5,9 +5,14 @@ import axios from "axios";
 import UnstyledSelectObjectValues from '../CreateQuiz/UnstyledSelectObjectValues';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { IconButton } from '@mui/material';
+import { State } from '../Context/Provider';
 
 const AddDetails = ({handleThreeDotMenu}) => {
-  const [listarray, setlistarray] = useState(["Science", "Mathematics", "History"])
+  // const [listarray, setlistarray] = useState(["Science", "Mathematics", "History"])
+  const { subjects } = State();
+  console.log(subjects.subject)
+  const [existingSubject, setExistingSubject] = useState(false)
+
   // const [sub, setSub] = useState({
   //   name: "",
   //   topic: "",
@@ -87,6 +92,11 @@ const AddDetails = ({handleThreeDotMenu}) => {
   const toggleAddSubject = () => {
     setAddSubject(prevAddSubject => !prevAddSubject);
   };
+  const handleExistingSubject = ()=>{
+    setExistingSubject(!existingSubject)
+
+  }
+
   return (
     <div className="side-details page2">
       <h3>Create subject/topic/subtopic</h3>
@@ -99,11 +109,21 @@ const AddDetails = ({handleThreeDotMenu}) => {
             </Link>
             {/* all dropdown items display using map function */}
             <ul className="dropdown-menu" >
-                {listarray.map((itemVal, index) => (
+                {subjects.map((data, index) => {
+                  const {subject} = data
+                  return (
                     <li key={index}>
-                    <Link className="dropdown-item" onClick={toggleAddSubject}>{itemVal}</Link>
+                    <Link className="dropdown-item" 
+                      onClick={()=>{
+                        toggleAddSubject()
+                        handleExistingSubject()
+                        
+                        }}>
+                      {subject}
+                    </Link>
                     </li>
-                ))}
+                )
+                  })}
               <li><NavLink onClick={toggleAddSubject} className="dropdown-item add-item">Add New</NavLink></li>
               
             </ul>
@@ -116,6 +136,8 @@ const AddDetails = ({handleThreeDotMenu}) => {
           <div className='input-wrapper'>
           <input name="name"
                 type="text"
+                // {(existingSubject =="false")?value={'sanket'} :null}}
+                // value={`${ existingSubject =="false" ?sub.name:null}`}
                 value={sub.name}
                 onChange={(e)=>InputEvent(e,0)}
                 placeholder='New sub name ABC'>
