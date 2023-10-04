@@ -1,7 +1,9 @@
 import React from 'react'
 import edits  from '../assets/edit.png'
+import {State} from "../../Context/Provider"
 
-const SideDetails = ({heading, number}) => {
+const SideDetails = ({ heading, number }) => {
+  const {prevnote, setprevnote } = State();
   return (
     <div className="side-details">
       <div className="amount-wrapper">
