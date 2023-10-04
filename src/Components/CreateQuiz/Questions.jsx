@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import {
   TextField,
   Radio,
@@ -16,7 +16,7 @@ import { State } from "../Context/Provider"
 import axios from 'axios';
 
 const CreateQuiz = ({handleThreeDotMenu}) => {
-  const { quest,prevnote, setprevnote} = State();
+  const { quest,questions, setQuestions} = State();
   const [question, setQuestion] = useState({ text: '', image: null });
   const [options, setOptions] = useState([
     { text: '', image: null ,answer: false},
@@ -24,6 +24,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     { text: '', image: null ,answer: false},
     { text: '', image: null ,answer: false},
   ]);
+  // const [bool, setbool]=useState(false)
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
 
   const handleQuestionChange = (event) => {
@@ -99,21 +100,23 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
       formData.append(`option_${i + 1}_image`, optionImageInput);
       const isAnswer = options[i].answer;
       formData.append(`is_answer_${i}`, isAnswer.toString());
-      popt.push(optionText);
+      popt.push({text:optionText});
     }
-    const newobj = { pquestion: QUE, poptions: popt }
-    setprevnote(oldArray => [newobj, ...oldArray]);
-    console.log(newobj)
-    console.log(prevnote);
     
-    // const user = localStorage.getItem('user')
     const creatorId = Number("651276d1abd5f9a259c30025");
     axios
     .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
         .then((response) => {
           if (response.status === 201) {
+            // setbool(!bool)
             console.log("Data added successfully");
-            
+            try {
+              
+              setQuestions(oldArray => [{ question: QUE, options: popt },...oldArray])
+            }
+            catch (err) {
+              console.log(err)
+            }
           } else {
             alert("Error occured");
           }
@@ -125,7 +128,13 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     // console.log('Posted Question:', { question, options, correctAnswerIndex });
   };
 
-
+// useEffect(() => {
+//     console.log(questions);
+//     // setpopt([]);
+//     // setprevu({});
+//     // setbool(false)
+// }, [bool]);
+  
   const inputStyle = {
     padding: "11px 27px",
     borderRadius: "12px",

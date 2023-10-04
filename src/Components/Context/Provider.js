@@ -17,10 +17,7 @@ const Provider = ({ children }) => {
     
   });
 
-  const [prevnote, setprevnote] = useState([{
-    pquestion: "",
-    poptions:[],
-  }])
+  // const [prevnote, setprevnote] = useState([])
 
   const [questions, setQuestions] = useState([])
   const [subjects, setSubjects] = useState([])
@@ -29,7 +26,13 @@ const Provider = ({ children }) => {
       try{
         const { data } = await axios.get("http://localhost:5000/get_all_quizz")
         const question = JSON.parse(data)
-        setQuestions(question)
+        // console.log(question)
+        question?.map((data, i) => {
+          const { question, options } = data.question_container
+          setQuestions(oldArray => [{question: question, options: options},...oldArray])
+        })
+        // console.log(question)
+
       } catch(error){
         console.error('Error Fetching questions: ', error)
       }
@@ -55,10 +58,9 @@ const Provider = ({ children }) => {
               setActiveTab,
               quest,
               setquest,
-              prevnote,
-              setprevnote,
               questions,
-              subjects
+              subjects,
+              setQuestions
       }}
     >
       {children}
