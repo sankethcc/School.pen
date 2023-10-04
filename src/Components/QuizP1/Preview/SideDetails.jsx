@@ -16,7 +16,7 @@ const SideDetails = ({heading, number}) => {
       <h3>Preview</h3>
       <Box>
         {questions?.map((data, i) => {
-        console.log(data)
+        // console.log(data)
         const {question, options } = data
         return(
           <div className='preview-question' key={i}>
