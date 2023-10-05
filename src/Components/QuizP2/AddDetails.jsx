@@ -10,7 +10,7 @@ import { State } from '../Context/Provider';
 const AddDetails = ({handleThreeDotMenu}) => {
   // const [listarray, setlistarray] = useState(["Science", "Mathematics", "History"])
   const { subjects } = State();
-  console.log(subjects.subject)
+  // console.log(subjects.subject)
   const [existingSubject, setExistingSubject] = useState(false)
 
   // const [sub, setSub] = useState({

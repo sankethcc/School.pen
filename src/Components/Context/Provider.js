@@ -37,7 +37,7 @@ const Provider = ({ children }) => {
         setfdata(question)
         question?.map((data, i) => {
           const { question, options } = data.question_container
-          setQuestions(oldArray => [{question: question, options: options},...oldArray])
+          setQuestions(oldArray => [{question: question, options: options, id: data._id},...oldArray])
         })
         // console.log(question)
 
@@ -68,11 +68,11 @@ const Provider = ({ children }) => {
       try{
         // const { data } = await axios.get("http://localhost:5000/get_all_quizz")
         // const question = JSON.parse(data)
-        console.log(fdata)
+        // console.log(fdata)
         const fun= (quet) => {
           quet?.map((data, i) => {
           const { question, options } = data.question_container
-          setQuestions(oldArray => [{ question: question, options: options }, ...oldArray])
+          setQuestions(oldArray => [{ question: question, options: options, id: data._id }, ...oldArray])
           })
         }
         setQuestions([]);
