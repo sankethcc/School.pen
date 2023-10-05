@@ -151,7 +151,7 @@ const Provider = ({ children }) => {
         console.error('Error Fetching questions: ', error)
       }
     }
-    if(quest.Topic)
+    if(quest.Topic && quest.Subject)
     fetchstopic()
   }, [quest.Topic])
 

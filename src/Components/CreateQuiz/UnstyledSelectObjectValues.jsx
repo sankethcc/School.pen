@@ -8,7 +8,7 @@ import { fontSize, styled } from '@mui/system';
 // import { useState } from 'react';
 import {State} from "../Context/Provider"
 
-export default function UnstyledSelectObjectValues({dropdownName,listArray,add,value }) {
+export default function UnstyledSelectObjectValues({dropdownName,listArray,add,value,val }) {
   const style = dropdownName == "Language" ? "#fff" : '#F5F6F7'
   const { quest, setquest } = State();
   
@@ -18,7 +18,7 @@ export default function UnstyledSelectObjectValues({dropdownName,listArray,add,v
         ...prevData,
         [value]: newValue,
       };
-    })} sx={{background:`${style}`}} placeholder={dropdownName} >
+    })} sx={{background:`${style}`}} placeholder={val?val:dropdownName} >
         {listArray.map((itemVal, index) => (
           <StyledOption
             sx={{}}
