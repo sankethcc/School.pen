@@ -29,6 +29,9 @@ import TotalUser from "../UserComponent/AssignUser/TotalUser";
 import UserData from "../UserComponent/UserProfile/UserData";
 import UserProfile from "../UserComponent/UserProfile/UserProfile";
 import SideDetails from "../QuizP1/Preview/SideDetails";
+import QuestionMultipleAns from "./QuestionMultipleAns";
+import QuestionTrueFalse from "./QuestionTrueFalse";
+import { State } from "../Context/Provider";
 const style = {
   dflex: {
     display: "flex",
@@ -59,6 +62,8 @@ const CreateQuiz = ({
     handleOpenPage,
     handleOpenPageNameUpdate,
   };
+  const {quest} = State()
+  console.log(quest)
   return (
     <Box
       style={style.dflex}
@@ -98,8 +103,26 @@ const CreateQuiz = ({
               <Box>
                 <SelectContainer />
                 {openPage == "Create Exam" ? <Instructions /> : null}
+                {
+                  (quest.Quiz_Type === '') 
+                  ? <Questions handleThreeDotMenu={handleThreeDotMenu} />
+                  : (quest.Quiz_Type === 'Multiple choice - multiple answers')
+                  ? <QuestionMultipleAns handleThreeDotMenu={handleThreeDotMenu} />
+                  : (quest.Quiz_Type === 'True or False')
+                  ? <QuestionTrueFalse prop={["True", "False"]} />
+                  : (quest.Quiz_Type === "Multiple choice - Single answer")
+                  ? <Questions handleThreeDotMenu={handleThreeDotMenu} />
+                  : (quest.Quiz_Type === 'Yes or No')
+                  ? <QuestionTrueFalse handleThreeDotMenu={handleThreeDotMenu} prop={["Yes", "No"]} />
+                  : null
+                
+
+                }
                 {/*  question and options componennt */}
-                <Questions handleThreeDotMenu={handleThreeDotMenu} />
+                {/* <Questions handleThreeDotMenu={handleThreeDotMenu} /> */}
+                {/* <QuestionMultipleAns handleThreeDotMenu={handleThreeDotMenu} /> */}
+                {/* <QuestionTrueFalse handleThreeDotMenu={handleThreeDotMenu} /> */}
+
               </Box>
             )}
           </Box>
@@ -152,6 +175,7 @@ const CreateQuiz = ({
           </Box>
         )}
       </Box>
+      
     </Box>
   );
 };
