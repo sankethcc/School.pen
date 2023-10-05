@@ -11,20 +11,19 @@ import {
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
-import ClearIcon from '@mui/icons-material/Clear';
 import { State } from "../Context/Provider"
 import axios from 'axios';
 
 const CreateQuiz = ({handleThreeDotMenu}) => {
-  const { quest,questions, setQuestions} = State();
-  const [question, setQuestion] = useState({ text: '', image: null });
+  const { quest,questions,setquest, setQuestions} = State();
+  const [question, setQuestion] = useState({ text: '', question_image_url: null });
   const [options, setOptions] = useState([
-    { text: '', image: null ,answer: false},
-    { text: '', image: null ,answer: false},
-    { text: '', image: null ,answer: false},
-    { text: '', image: null ,answer: false},
+    { text: '', image_url: null ,is_answer: false},
+    { text: '', image_url: null ,is_answer: false},
+    { text: '', image_url: null ,is_answer: false},
+    { text: '', image_url: null ,is_answer: false},
   ]);
-  // const [bool, setbool]=useState(false)
+  const [bool, setbool]=useState(true)
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
 
   const handleQuestionChange = (event) => {
@@ -43,11 +42,11 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
 
   const handleDeleteImage = (type) => {
     if (type === 'question') {
-      setQuestion({ ...question, image: null });
+      setQuestion({ ...question, question_image_url: null });
     } else if (type === 'option') {
       const newOptions = options.map((option, index) => {
         if (index === correctAnswerIndex) {
-          return { ...option, image: null };
+          return { ...option, image_url: null };
         }
         return option;
       });
@@ -57,24 +56,22 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
 
   const handleDeleteOption = (index) => {
     const newOptions = [...options];
-    newOptions[index] = { text: '', image: null };
+    newOptions[index] = { text: '', image_url: null };
     setOptions(newOptions);
-    // 
-    // const userd = localStorage.getItem('user')
-    // console.log(userd.user)
+    // quest.Language()
   };
 
   const handleAddOption = () => {
-    const newOptions = [...options, { text: '', image: null,answer: false}];
+    const newOptions = [...options, { text: '', image_url: null,is_answer: false}];
     setOptions(newOptions);
   };
 
   const handleImageUpload = (event, index, type) => {
     const newOptions = [...options];
     if (type === 'question') {
-      setQuestion({ ...question, image: event.target.files[0] });
+      setQuestion({ ...question, question_image_url: event.target.files[0] });
     } else if (type === 'option') {
-      newOptions[index].image = event.target.files[0];
+      newOptions[index].image_url = event.target.files[0];
       setOptions(newOptions);
     }
   };
@@ -90,15 +87,15 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     formData.append('level', quest.Level);
     formData.append('quiz_type', quest.Quiz_Type);
     formData.append('question', question.text);
-    formData.append('question_image', question.image);
+    formData.append('question_image', question.question_image_url);
 
     const popt = [],QUE=question.text;
     for (let i = 0; i < options.length; i++) {
       const optionText = options[i].text;
-      const optionImageInput = options[i].image;
+      const optionImageInput = options[i].image_url;
       formData.append(`option_${i + 1}`, optionText);
       formData.append(`option_${i + 1}_image`, optionImageInput);
-      const isAnswer = options[i].answer;
+      const isAnswer = options[i].is_answer;
       formData.append(`is_answer_${i}`, isAnswer.toString());
       popt.push({text:optionText});
     }
@@ -109,7 +106,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
         .then((response) => {
           if (response.status === 201) {
             // setbool(!bool)
-            console.log("Data added successfully");
+            // console.log("Data added successfully");
             try {
               
               setQuestions(oldArray => [{ question: QUE, options: popt,id: response.data._id }, ...oldArray])
@@ -129,6 +126,25 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     // console.log('Posted Question:', { question, options, correctAnswerIndex });
   };
 
+   useEffect(()=>{
+    const fetchstopic = async ()=>{
+      try {
+        const { data } = await axios.get(`http://localhost:5000/get_quizz/651beef47be29762479cf0ef`)
+        // const temp= JSON.parse(data)
+        console.log(data.language)
+        setOptions(data.question_container.options)
+        setQuestion({ text: data.question_container.question, question_image_url: data.question_container.question_image_url })
+        setquest({...quest, Language: 'gch' })
+        
+      } catch(error){
+        console.error('Error Fetching questions: ', error)
+      }
+     }
+     
+    fetchstopic()
+     setbool(false)
+     console.log(quest)
+  }, [])
 // useEffect(() => {
 //     console.log(questions);
 //     // setpopt([]);

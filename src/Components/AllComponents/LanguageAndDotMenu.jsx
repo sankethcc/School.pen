@@ -34,7 +34,7 @@ const LanguageAndDotMenu = ({
           justifyContent: "space-between",
         }}
       >
-        <Box>
+        <Box >
           <UnstyledSelectObjectValues
             dropdownName={"Language"}
             listArray={["Hindi", "English", "Urdu"]}
