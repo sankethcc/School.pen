@@ -14,14 +14,17 @@ const SideDetails = ({heading, number}) => {
         <p className="price-count">{questions.length}</p>
       </div>
       <h3>Preview</h3>
+      
       <Box>
         {questions?.map((data, i) => {
-        // console.log(data)
+          // console.log(data)
         const {question, options } = data
-        return(
+          return (
+          // <textarea className='preview-question'>
           <div className='preview-question' key={i}>
-          <img src={edits} className='edit-logo' alt="" />
-          <p>{question}</p>
+          {/* <img src={edits} className='edit-logo' alt="" /> */}
+            <p>{question}</p>
+            
           <ul>
             {options.map((option, i)=>{
               const text  = option.text
@@ -31,7 +34,8 @@ const SideDetails = ({heading, number}) => {
             })}
             
           </ul>
-        </div>
+              </div>
+          // </textarea>
         )
         })}
 
