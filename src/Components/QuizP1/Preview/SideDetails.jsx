@@ -10,7 +10,7 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 const SideDetails = ({heading, number}) => {
   const { questions} = State();
-  
+  console.log(questions)
   return (
     
     <div className="side-details">
@@ -39,8 +39,11 @@ const SideDetails = ({heading, number}) => {
             >
               {options.map((option, i)=>{
                 const text = option.text
+                const is_answer = option.is_answer
+                console.log(is_answer)
+                
                 return(
-                  <FormControlLabel disabled value="female" control={<Radio />} label={text} />
+                  <FormControlLabel  disabled={!is_answer} value="female" control={<Radio />} label={text} />
                   
                 )
               })}
