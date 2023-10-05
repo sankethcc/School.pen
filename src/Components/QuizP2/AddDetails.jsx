@@ -6,6 +6,7 @@ import UnstyledSelectObjectValues from '../CreateQuiz/UnstyledSelectObjectValues
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { IconButton } from '@mui/material';
 import { State } from '../Context/Provider';
+import AddNewSubject from './AddNewSubject';
 
 const AddDetails = ({handleThreeDotMenu}) => {
   // const [listarray, setlistarray] = useState(["Science", "Mathematics", "History"])
@@ -245,6 +246,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
         </div>
       </div>
       :null}
+      <AddNewSubject />
     </div>
   )
 }

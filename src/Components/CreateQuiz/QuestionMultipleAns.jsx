@@ -1,12 +1,12 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import {
+  Checkbox,  FormControlLabel,
+  Box,
+  Typography,
   TextField,
   Radio,
-  FormControlLabel,
-  Box,
   IconButton,
   Button,
-  Typography,
   Input,
 } from '@mui/material';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -15,17 +15,16 @@ import ClearIcon from '@mui/icons-material/Clear';
 import { State } from "../Context/Provider"
 import axios from 'axios';
 
-const CreateQuiz = ({handleThreeDotMenu}) => {
-  const { quest,questions, setQuestions} = State();
-  const [question, setQuestion] = useState({ text: '', image: null });
+const QuestionMultipleAns = ({handleThreeDotMenu}) => {
+const { quest,questions, setQuestions} = State();
+const [question, setQuestion] = useState({ text: '', image: null });
   const [options, setOptions] = useState([
-    { text: '', image: null ,answer: false},
-    { text: '', image: null ,answer: false},
-    { text: '', image: null ,answer: false},
-    { text: '', image: null ,answer: false},
+    { text: '', image: null, answer: false },
+    { text: '', image: null, answer: false },
+    { text: '', image: null, answer: false },
+    { text: '', image: null, answer: false },
   ]);
-  // const [bool, setbool]=useState(false)
-  const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
+  const [selectedAnswerIndices, setSelectedAnswerIndices] = useState([]);
 
   const handleQuestionChange = (event) => {
     setQuestion({ ...question, text: event.target.value });
@@ -37,16 +36,24 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     setOptions(newOptions);
   };
 
-  const handleRadioChange = (event) => {
-    setCorrectAnswerIndex(parseInt(event.target.value, 10));
+  const handleCheckboxChange = (event, index) => {
+    const newSelectedIndices = [...selectedAnswerIndices];
+    if (event.target.checked) {
+      newSelectedIndices.push(index);
+    } else {
+      const indexToRemove = newSelectedIndices.indexOf(index);
+      if (indexToRemove !== -1) {
+        newSelectedIndices.splice(indexToRemove, 1);
+      }
+    }
+    setSelectedAnswerIndices(newSelectedIndices);
   };
-
   const handleDeleteImage = (type) => {
     if (type === 'question') {
       setQuestion({ ...question, image: null });
     } else if (type === 'option') {
       const newOptions = options.map((option, index) => {
-        if (index === correctAnswerIndex) {
+        if (index === selectedAnswerIndices) {
           return { ...option, image: null };
         }
         return option;
@@ -54,18 +61,14 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
       setOptions(newOptions);
     }
   };
-
   const handleDeleteOption = (index) => {
     const newOptions = [...options];
-    newOptions[index] = { text: '', image: null };
+    newOptions.splice(index, 1);
     setOptions(newOptions);
-    // 
-    // const userd = localStorage.getItem('user')
-    // console.log(userd.user)
   };
 
   const handleAddOption = () => {
-    const newOptions = [...options, { text: '', image: null,answer: false}];
+    const newOptions = [...options, { text: '', image: null, answer: false }];
     setOptions(newOptions);
   };
 
@@ -79,7 +82,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     }
   };
 
-  const handlePostQuestion = () => {
+   const handlePostQuestion = () => {
     // const data = {
     const formData = new FormData();
     formData.append('language', quest.Language); 
@@ -127,25 +130,15 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     
     // console.log('Posted Question:', { question, options, correctAnswerIndex });
   };
-
-// useEffect(() => {
-//     console.log(questions);
-//     // setpopt([]);
-//     // setprevu({});
-//     // setbool(false)
-// }, [bool]);
-  
   const inputStyle = {
-    padding: "11px 27px",
-    borderRadius: "12px",
-    background: "#EFF3F4",
-    width: "100%",
-    border: "none",
-    color: "#707070",
-    fontSize:'18px'
+    padding: '11px 27px',
+    borderRadius: '12px',
+    background: '#EFF3F4',
+    width: '100%',
+    border: 'none',
+    color: '#707070',
+    fontSize: '18px',
   };
-
-  
 
   return (
     <Box >
@@ -187,27 +180,30 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
                 </IconButton>
                 </label>
         </Box>
-        <Typography sx={{font:'700 32px Poppins', color:'var(--grey, #707070)',alignSelf:'start', pb:"28px", mt:'28px'}} >Options:</Typography>
-        <Box sx={{width:"100%", display:'grid', gridTemplateColumns:"12fr", gridRowGap:'24px'}}>
-
-                {options.map((option, index) => (
-                    <Box key={index} style={{ display: 'flex', alignItems: 'center', justifyContent:'space-between', marginBottom: '8px', width:'100%', gap:'32px' }}>
-                    <FormControlLabel
-                        value={index.toString()}
-                        control={<Radio sx={{ '& .MuiSvgIcon-root': { fontSize: 35, }}} checked={correctAnswerIndex === index} onChange={handleRadioChange} />}
-                        label=""
-                        labelPlacement="start"
-                        
-                    />
-                    <Input
-                        placeholder={`Option ${index+1}`}
-                        style={inputStyle}
-                        disableUnderline
-                        value={option.text}
-                        onChange={(e) => handleOptionChange(e, index)}
-                        variant="outlined"
-                        margin="normal"
-                    />
+        <Typography sx={{ font: '700 32px Poppins', color: 'var(--grey, #707070)', alignSelf: 'start', pb: "28px" }}>Options:</Typography>
+      <Box sx={{ width: "100%", display: 'grid', gridTemplateColumns: "12fr", gridRowGap: '24px' }}>
+        {options.map((option, index) => (
+          <Box key={index} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px', width: '100%', gap: '32px' }}>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  sx={{ '& .MuiSvgIcon-root': { fontSize: 35 } }}
+                  checked={selectedAnswerIndices.includes(index)}
+                  onChange={(event) => handleCheckboxChange(event, index)}
+                />
+              }
+              label=""
+              labelPlacement="start"
+            />
+            <input
+              placeholder={`Option ${index + 1}`}
+              style={inputStyle}
+              disableUnderline
+              value={option.text}
+              onChange={(e) => handleOptionChange(e, index)}
+              variant="outlined"
+              margin="normal"
+            />
                     <Box display="flex" alignItems="center">
                         {/* {option.image && (
                         <IconButton
@@ -272,4 +268,4 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
   );
 };
 
-export default CreateQuiz;
+export default QuestionMultipleAns;

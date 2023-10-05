@@ -3,9 +3,14 @@ import edits  from '../assets/edit.png'
 import axios from 'axios'
 import { Box } from "@mui/material"
 import { State } from '../../Context/Provider'
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 const SideDetails = ({heading, number}) => {
   const { questions} = State();
-
+  console.log(questions)
   return (
     
     <div className="side-details">
@@ -14,23 +19,38 @@ const SideDetails = ({heading, number}) => {
         <p className="price-count">{questions.length}</p>
       </div>
       <h3>Preview</h3>
+      
       <Box>
-       {questions?.map((data, i)=>{
-        const {question, options } = data.question_container
-        return(
+        {questions?.map((data, i) => {
+          // console.log(data)
+        const {question, options } = data
+          return (
+          // <textarea className='preview-question'>
           <div className='preview-question' key={i}>
-          <img src={edits} className='edit-logo' alt="" />
-          <p>{question}</p>
-          <ul>
-            {options.map((option, i)=>{
-              const{text, image_url} = option
-              return (
-                <li key={i}>{text}</li>
-              )
-            })}
+          {/* <img src={edits} className='edit-logo' alt="" /> */}
+            <p>{question}</p>
             
-          </ul>
-        </div>
+            <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="female"
+              name="radio-buttons-group"
+            >
+              {options.map((option, i)=>{
+                const text = option.text
+                const is_answer = option.is_answer
+                console.log(is_answer)
+                
+                return(
+                  <FormControlLabel  disabled={!is_answer} value="female" control={<Radio />} label={text} />
+                  
+                )
+              })}
+            </RadioGroup>
+          </FormControl>
+              </div>
+          // </textarea>
         )
         })}
 
