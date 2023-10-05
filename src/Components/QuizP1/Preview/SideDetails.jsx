@@ -3,6 +3,11 @@ import edits  from '../assets/edit.png'
 import axios from 'axios'
 import { Box } from "@mui/material"
 import { State } from '../../Context/Provider'
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 const SideDetails = ({heading, number}) => {
   const { questions} = State();
   
@@ -25,15 +30,22 @@ const SideDetails = ({heading, number}) => {
           {/* <img src={edits} className='edit-logo' alt="" /> */}
             <p>{question}</p>
             
-          <ul>
-            {options.map((option, i)=>{
-              const text  = option.text
-              return (
-                <li key={i}>{text}</li>
-              )
-            })}
-            
-          </ul>
+            <FormControl>
+            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="female"
+              name="radio-buttons-group"
+            >
+              {options.map((option, i)=>{
+                const text = option.text
+                return(
+                  <FormControlLabel disabled value="female" control={<Radio />} label={text} />
+                  
+                )
+              })}
+            </RadioGroup>
+          </FormControl>
               </div>
           // </textarea>
         )

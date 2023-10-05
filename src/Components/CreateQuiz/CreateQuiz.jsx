@@ -77,7 +77,8 @@ const CreateQuiz = ({
             xs: "100%",
             sm: "100%",
             md: "63%",
-            lg: "74%",
+            lg: "65%",
+            xl: '69%'
           },
           px: "40px",
           pt: "38px",
@@ -109,8 +110,11 @@ const CreateQuiz = ({
       <Box
         sx={{
           width: {
+            xs: "100%",
+            sm:'100%',
             md: "37%",
-            lg: "31%",
+            lg: "35%",
+            xl:"31%"
           },
           background: "#fff",
           p: "38px 32px",
