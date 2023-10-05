@@ -8,6 +8,7 @@ import ProfileWrapper from "../AllComponents/ProfileWrapper";
 import SelectContainer from "../AllComponents/SelectContainer";
 import AssignUser from "../UserComponent/AssignUser/AssignUser";
 import UserProfile from "../UserComponent/UserProfile/UserProfile";
+import { State } from '../Context/Provider'
 
 const style = {
   dflex: {
@@ -30,6 +31,8 @@ const UpdateQuiz = ({
   const handleThreeDotMenu = (menuName) => {
     setThreeDotMenu(menuName);
   };
+  const {quest} = State();
+
   const propsForProfileRow = {
     openPageName,
     handleOpenPage,
@@ -78,7 +81,8 @@ const UpdateQuiz = ({
                 }}>
                 <UnstyledSelectObjectValues
                   dropdownName={"Language"}
-                  listArray={["Hindi", "English", "Urdu"]}
+                    listArray={["Hindi", "English", "Urdu"]}
+                    val={quest.Language}
                   add={true}
                 />
               </Box>

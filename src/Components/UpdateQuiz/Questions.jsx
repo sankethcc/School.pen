@@ -76,45 +76,56 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
     }
   };
 
-  const handlePostQuestion = () => {
-    // const data = {
-    const formData = new FormData();
-    formData.append('language', quest.Language); 
-    formData.append('class', quest.Class);
-    formData.append('subject', quest.Subject);
-    formData.append('topic', quest.Topic);
-    formData.append('subtopic', quest.Sub_topic);
-    formData.append('level', quest.Level);
-    formData.append('quiz_type', quest.Quiz_Type);
-    formData.append('question', question.text);
-    formData.append('question_image', question.question_image_url);
 
-    const popt = [],QUE=question.text;
-    for (let i = 0; i < options.length; i++) {
-      const optionText = options[i].text;
-      const optionImageInput = options[i].image_url;
-      formData.append(`option_${i + 1}`, optionText);
-      formData.append(`option_${i + 1}_image`, optionImageInput);
-      const isAnswer = options[i].is_answer;
-      formData.append(`is_answer_${i}`, isAnswer.toString());
-      popt.push({text:optionText});
-    }
-    
-    const creatorId = Number("651276d1abd5f9a259c30025");
-    axios
-    .post(`http://localhost:5000/create_quiz/${creatorId}`, formData)
+  const handleDeleteQuestion = () => {
+    var usersdata = JSON.parse(localStorage.getItem('user' )) ;
+    const creatorId = usersdata.user._id
+    // console.log(creatorId)
+    const quiz_id= '651beef47be29762479cf0ef'
+      axios
+    .delete(`http://localhost:5000/delete_quizz/${quiz_id}/${creatorId}`)
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status === 200) {
             // setbool(!bool)
-            // console.log("Data added successfully");
-            try {
-              
-              setQuestions(oldArray => [{ question: QUE, options: popt,id: response.data._id }, ...oldArray])
-              // console.log(response.data._id)
-            }
-            catch (err) {
-              console.log(err)
-            }
+            console.log("Data updated successfully");
+            
+          } else {
+            alert("Error occured");
+          }
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+        });
+  }
+
+  const handlePostQuestion = () => {
+    
+    const form = {
+      'language': quest.Language,
+      'class': quest.Class,
+      'subject': quest.Subject,
+      'topic': quest.Topic,
+      'subtopic': quest.Sub_topic,
+      'level': quest.Level,
+      'quiz_type': quest.Quiz_Type,
+      'question_container': {
+          'question': question.text,
+          'question_image_url': question.question_image_url,
+          'options': options
+      }
+    }
+     
+    var usersdata = JSON.parse(localStorage.getItem('user' )) ;
+    const creatorId = usersdata.user._id
+    console.log(creatorId)
+    const quiz_id= '651beef47be29762479cf0ef'
+    axios
+    .put(`http://localhost:5000/update_quizz/${quiz_id}/${creatorId}`, JSON.stringify(form))
+        .then((response) => {
+          if (response.status === 200) {
+            // setbool(!bool)
+            console.log("Data updated successfully");
+            
           } else {
             alert("Error occured");
           }
@@ -131,19 +142,29 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
       try {
         const { data } = await axios.get(`http://localhost:5000/get_quizz/651beef47be29762479cf0ef`)
         // const temp= JSON.parse(data)
-        console.log(data.language)
+        // console.log(data.class)
+        const obj = {
+          Language: data.language,
+          Class: data.class,
+          Topic: data.topic,
+          Level: data.level,
+          Quiz_Type: data.quiz_type,
+          Subject: data.subject,
+          Sub_topic: data.subtopic
+        }
         setOptions(data.question_container.options)
         setQuestion({ text: data.question_container.question, question_image_url: data.question_container.question_image_url })
-        setquest({...quest, Language: 'gch' })
+        // console.log(obj)
+        setquest(obj)
+        
         
       } catch(error){
         console.error('Error Fetching questions: ', error)
       }
      }
      
-    fetchstopic()
-     setbool(false)
-     console.log(quest)
+     fetchstopic()
+    
   }, [])
 // useEffect(() => {
 //     console.log(questions);
@@ -258,14 +279,14 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
         </Box>
         <Typography sx={{cursor:'pointer', color:'#7A58E6', font:'700 20px Poppins', alignSelf:'end', mt:'32px'}} onClick={handleAddOption} aria-label="Add option" >Add Another Options</Typography>
     </Box>
-    <Box sx={{display:'flex', width:"100%", mt:'56px', mb:'91px', justifyContent:'center'}}>
+    <Box sx={{display:'flex', width:"100%", mt:'56px', mb:'91px', justifyContent:'space-between'}}>
       <Button variant="contained" onClick={()=>{
         handlePostQuestion()
         handleThreeDotMenu()
       }} 
         color="primary"
         sx={{
-            width: "375px",
+            width: "40%",
             borderRadius: "12px",
             background: "#7A58E6",
             cursor: "pointer",
@@ -280,9 +301,31 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
             },
           }}
       >
-        Post Question
+        Update Question
       </Button>
 
+      <Button variant="contained" onClick={()=>{
+        handleDeleteQuestion()
+      }} 
+        color="primary"
+        sx={{
+            width: "40%",
+            borderRadius: "12px",
+            background: "#7A58E6",
+            cursor: "pointer",
+            border: "none",
+            color: "#FFF",
+            fontSize: "18px",
+            fontWeight: "500",
+            textTransform: "capitalize",
+            p: "10px 10px",
+            "&:hover": {
+              background: "#7A58E6",
+            },
+          }}
+      >
+        Delete Question
+      </Button>
 
     </Box>
     </Box>
