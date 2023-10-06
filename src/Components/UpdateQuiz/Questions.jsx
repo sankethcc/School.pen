@@ -142,7 +142,7 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
    useEffect(()=>{
     const fetchstopic = async ()=>{
       try {
-        const { data } = await axios.get(`http://localhost:5000/get_quizz/651beef47be29762479cf0ef`)
+        const { data } = await axios.get(`http://localhost:5000/get_quizz/${quiz_id}`)
         // const temp= JSON.parse(data)
         // console.log(data.class)
         const obj = {
