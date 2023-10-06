@@ -8,9 +8,9 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
-import { Link } from 'react-router-dom'
-const SideDetails = ({heading, number, handleOpenPageNameUpdate, handleOpenPage}) => {
+const SideDetails = ({heading, number}) => {
   const { questions} = State();
+  // console.log(questions)
   return (
     
     <div className="side-details">
@@ -23,16 +23,11 @@ const SideDetails = ({heading, number, handleOpenPageNameUpdate, handleOpenPage}
       <Box>
         {questions?.map((data, i) => {
           // console.log(data)
-        const {question, options, id } = data
+        const {question, options } = data
           return (
           // <textarea className='preview-question'>
           <div className='preview-question' key={i}>
-            <Link to={`/update/${id}`} onClick={()=>{
-              handleOpenPageNameUpdate("Update Quiz")
-              handleOpenPage("Update Quiz")
-              }} >
-          <img src={edits} className='edit-logo' style={{cursor:'pointer'}} alt="" />
-            </Link>
+          {/* <img src={edits} className='edit-logo' alt="" /> */}
             <p>{question}</p>
             
             <FormControl>
@@ -45,9 +40,10 @@ const SideDetails = ({heading, number, handleOpenPageNameUpdate, handleOpenPage}
               {options.map((option, i)=>{
                 const text = option.text
                 const is_answer = option.is_answer
+                // console.log(is_answer)
                 
                 return(
-                  <FormControlLabel key={i}  disabled={!is_answer} value="female" control={<Radio />} label={text} />
+                  <FormControlLabel  disabled={!is_answer} value="female" control={<Radio />} label={text} />
                   
                 )
               })}

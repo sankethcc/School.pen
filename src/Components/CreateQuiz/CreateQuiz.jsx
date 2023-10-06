@@ -63,6 +63,7 @@ const CreateQuiz = ({
     handleOpenPageNameUpdate,
   };
   const {quest} = State()
+  // console.log(quest)
   return (
     <Box
       style={style.dflex}
@@ -168,7 +169,7 @@ const CreateQuiz = ({
               </Box>
             ) : openPage == "Create Quiz"? (
               <Box>
-                <SideDetails handleOpenPage={handleOpenPage} handleOpenPageNameUpdate={handleOpenPageNameUpdate} heading="Total Quiz" number="50,000" />
+                <SideDetails heading="Total Quiz" number="50,000" />
               </Box>
             ):null}
           </Box>
