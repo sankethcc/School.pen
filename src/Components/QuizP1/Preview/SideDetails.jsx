@@ -11,7 +11,6 @@ import FormLabel from '@mui/material/FormLabel';
 import { Link } from 'react-router-dom'
 const SideDetails = ({heading, number}) => {
   const { questions} = State();
-  console.log(questions)
   return (
     
     <div className="side-details">
@@ -45,7 +44,7 @@ const SideDetails = ({heading, number}) => {
                 const is_answer = option.is_answer
                 
                 return(
-                  <FormControlLabel  disabled={!is_answer} value="female" control={<Radio />} label={text} />
+                  <FormControlLabel key={i}  disabled={!is_answer} value="female" control={<Radio />} label={text} />
                   
                 )
               })}

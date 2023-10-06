@@ -63,7 +63,6 @@ const CreateQuiz = ({
     handleOpenPageNameUpdate,
   };
   const {quest} = State()
-  console.log(quest)
   return (
     <Box
       style={style.dflex}
