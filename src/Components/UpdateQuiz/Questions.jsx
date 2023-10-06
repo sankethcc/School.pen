@@ -103,28 +103,49 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
   }
 
   const handlePostQuestion = () => {
-    
-    const form = {
-      'language': quest.Language,
-      'class': quest.Class,
-      'subject': quest.Subject,
-      'topic': quest.Topic,
-      'subtopic': quest.Sub_topic,
-      'level': quest.Level,
-      'quiz_type': quest.Quiz_Type,
-      'question_container': {
-          'question': question.text,
-          'question_image_url': question.question_image_url,
-          'options': options
-      }
+    // const question_container= {
+    //       'question': question.text,
+    //       'question_image_url': question.question_image_url,
+    //       'options': options
+    // }
+    const formData = new FormData();
+    formData.append('language', quest.Language);
+    formData.append('class', quest.Class);
+    formData.append('subject', quest.Subject);
+    formData.append('topic', quest.Topic);
+    formData.append('subtopic',  quest.Sub_topic);
+    formData.append('level', quest.Level);
+    formData.append('quiz_type',  quest.Quiz_Type);
+    formData.append('question', question.text);
+    formData.append('question_image', question.image);
+
+    for (let i = 0; i < options.length; i++) {
+      const optionText = options[i].text;
+      const optionImageInput = options[i].image_url;
+      formData.append(`option_${i + 1}`, optionText);
+      formData.append(`option_${i + 1}_image`, optionImageInput);
+      const isAnswer = options[i].is_answer;
+      formData.append(`is_answer_${i}`, isAnswer.toString());
     }
-     
+    // const data = {
+    //   'language': quest.Language,
+    //   'class': quest.Class,
+    //   'subject': quest.Subject,
+    //   'topic': quest.Topic,
+    //   'subtopic': quest.Sub_topic,
+    //   'level': quest.Level,
+    //   'quiz_type': quest.Quiz_Type,
+    //   'question_container': {
+    //       'question': question.text,
+    //       'question_image_url': question.question_image_url,
+    //       'options': options
+    //   }
+    // }
+    // const form= JSON.stringify(data)
     var usersdata = JSON.parse(localStorage.getItem('user' )) ;
     const creatorId = usersdata.user._id
-    // console.log(creatorId)
-    // const quiz_id= '651beef47be29762479cf0ef'
     axios
-    .put(`http://localhost:5000/update_quizz/${quiz_id}/${creatorId}`, JSON.stringify(form))
+    .put(`http://localhost:5000/update_quizz/${quiz_id}/${creatorId}`, formData)
         .then((response) => {
           if (response.status === 200) {
             // setbool(!bool)
