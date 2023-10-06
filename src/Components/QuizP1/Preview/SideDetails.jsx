@@ -8,6 +8,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import { Link } from 'react-router-dom'
 const SideDetails = ({heading, number}) => {
   const { questions} = State();
   // console.log(questions)
@@ -23,11 +24,13 @@ const SideDetails = ({heading, number}) => {
       <Box>
         {questions?.map((data, i) => {
           // console.log(data)
-        const {question, options } = data
+        const {question, options, id } = data
           return (
           // <textarea className='preview-question'>
           <div className='preview-question' key={i}>
-          {/* <img src={edits} className='edit-logo' alt="" /> */}
+            <Link to={`/update/${id}`} >
+          <img src={edits} className='edit-logo' alt="" />
+            </Link>
             <p>{question}</p>
             
             <FormControl>
@@ -43,7 +46,7 @@ const SideDetails = ({heading, number}) => {
                 // console.log(is_answer)
                 
                 return(
-                  <FormControlLabel  disabled={!is_answer} value="female" control={<Radio />} label={text} />
+                  <FormControlLabel key={i}  disabled={!is_answer} value="female" control={<Radio />} label={text} />
                   
                 )
               })}

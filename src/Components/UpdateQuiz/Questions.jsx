@@ -13,8 +13,10 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { State } from "../Context/Provider"
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const CreateQuiz = ({ handleThreeDotMenu }) => {
+  const {quiz_id} = useParams()
   
   const { quest,questions,setquest, setQuestions} = State();
   const [question, setQuestion] = useState({ text: '', question_image_url: null });
@@ -82,7 +84,7 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
     var usersdata = JSON.parse(localStorage.getItem('user' )) ;
     const creatorId = usersdata.user._id
     // console.log(creatorId)
-    const quiz_id= '651beef47be29762479cf0ef'
+    // const quiz_id= '651beef47be29762479cf0ef'
       axios
     .delete(`http://localhost:5000/delete_quizz/${quiz_id}/${creatorId}`)
         .then((response) => {
@@ -118,8 +120,8 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
      
     var usersdata = JSON.parse(localStorage.getItem('user' )) ;
     const creatorId = usersdata.user._id
-    console.log(creatorId)
-    const quiz_id= '651beef47be29762479cf0ef'
+    // console.log(creatorId)
+    // const quiz_id= '651beef47be29762479cf0ef'
     axios
     .put(`http://localhost:5000/update_quizz/${quiz_id}/${creatorId}`, JSON.stringify(form))
         .then((response) => {
@@ -141,7 +143,7 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
    useEffect(()=>{
     const fetchstopic = async ()=>{
       try {
-        const { data } = await axios.get(`http://localhost:5000/get_quizz/651beef47be29762479cf0ef`)
+        const { data } = await axios.get(`http://localhost:5000/get_quizz/${quiz_id}`)
         // const temp= JSON.parse(data)
         // console.log(data.class)
         const obj = {
@@ -204,7 +206,6 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
                 fullWidth
                 value={question.text}
                 onChange={handleQuestionChange}
-                margin="normal"
                 style={inputStyle}
                 sx={{
                     color:'var(--grey, #707070)'
@@ -245,7 +246,6 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
                         value={option.text}
                         onChange={(e) => handleOptionChange(e, index)}
                         variant="outlined"
-                        margin="normal"
                     />
                     <Box display="flex" alignItems="center">
                         {/* {option.image && (
