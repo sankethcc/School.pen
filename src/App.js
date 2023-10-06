@@ -3,6 +3,7 @@ import { Box } from '@mui/material'
 import Login from "./Components/Login";
 import ErrorPage from "./Pages/ErrorPage";
 import './styles/quiz.css'
+import './styles/CustomTextArea.css'
 
 import Quiz from "./Components/QuizP1/Quiz";
 import Page2 from "./Components/QuizP2/Page2";

@@ -13,9 +13,10 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { State } from "../Context/Provider"
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const CreateQuiz = ({ handleThreeDotMenu }) => {
+  const navigate = useNavigate()
   const {quiz_id} = useParams()
   
   const { quest,questions,setquest, setQuestions} = State();
@@ -284,6 +285,7 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
       <Button variant="contained" onClick={()=>{
         handlePostQuestion()
         handleThreeDotMenu()
+        navigate('/main')
       }} 
         color="primary"
         sx={{
@@ -307,6 +309,7 @@ const CreateQuiz = ({ handleThreeDotMenu }) => {
 
       <Button variant="contained" onClick={()=>{
         handleDeleteQuestion()
+        navigate('/main')
       }} 
         color="primary"
         sx={{

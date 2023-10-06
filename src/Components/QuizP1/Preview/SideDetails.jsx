@@ -34,10 +34,9 @@ const SideDetails = ({heading, number}) => {
             <p>{question}</p>
             
             <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label">Gender</FormLabel>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="female"
+              defaultValue="option"
               name="radio-buttons-group"
             >
               {options.map((option, i)=>{
@@ -46,7 +45,7 @@ const SideDetails = ({heading, number}) => {
                 // console.log(is_answer)
                 
                 return(
-                  <FormControlLabel key={i}  disabled={!is_answer} value="female" control={<Radio />} label={text} />
+                  <FormControlLabel key={i}  disabled={!is_answer} value="option" control={<Radio />} label={text} />
                   
                 )
               })}

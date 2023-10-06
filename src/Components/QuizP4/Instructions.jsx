@@ -6,6 +6,11 @@ import StyledArea from './StyledArea';
 
 const Instructions = () => {
     const [activeTab, setActiveTab] = useState('tab1');
+
+    const [instructions, setInstructions] = useState('');
+    const [eligibility, setEligibility] = useState('');
+    const [learning, setLearning] = useState('');
+    console.log(learning)
     const btnStyle={
         borderRadius:'12px',
         height:'64px',
@@ -82,8 +87,16 @@ const Instructions = () => {
                 className={`tab ${activeTab === 'tab3' ? 'active' : ''}`}
                 onClick={() => handleTabClick('tab3')}
             >Learning</Button>
+
         </ButtonGroup>
-        <StyledArea />
+        {activeTab == 'tab1'? 
+        <StyledArea value={instructions} setValue={setInstructions} />
+        
+        :activeTab == 'tab2'?
+        <StyledArea value={eligibility} setValue={setEligibility} />
+        
+    : <StyledArea value={learning} setValue={setLearning} />}
+                
       </Box>
 
   )

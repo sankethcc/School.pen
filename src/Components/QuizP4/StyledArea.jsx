@@ -1,15 +1,37 @@
 import { Box, Input } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import CustomizedDividers from './CustomizedDividers'
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 
-const StyledArea = () => {
-    
+const StyledArea = ({value, setValue}) => {
+  const modules = {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{'list': 'ordered'}, {'list': 'bullet'}],
+      ['link'],
+    ],
+  }
+
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', ,
+    'link'
+  ]
   return (
     <Box
     sx={{position:'relative'}}
+    className='instructions'
     >
-        <Input
+      <ReactQuill style={{minHeight:'205px',
+            background:'#F5F6F7',
+            width:'100%',
+            padding:'32px 32px',
+            borderRadius:'24px',
+            fontSize:'15px', }} theme="snow" value={value} onChange={setValue} modules={modules} formats={formats} />
+        {/* <Input
         sx={{
             height:'205px',
             background:'#F5F6F7',
@@ -37,7 +59,7 @@ const StyledArea = () => {
             }}
         >
             <CustomizedDividers />
-        </Box>
+        </Box> */}
     </Box>
   )
 }

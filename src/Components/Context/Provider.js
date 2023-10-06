@@ -38,6 +38,7 @@ const Provider = ({ children }) => {
         question?.map((data, i) => {
           const { question, options } = data.question_container
           setQuestions(oldArray => [{question: question, options: options, id: data._id},...oldArray])
+          
         })
         // console.log(question)
 
