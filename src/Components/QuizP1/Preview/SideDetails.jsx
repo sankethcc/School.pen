@@ -9,7 +9,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 import { Link } from 'react-router-dom'
-const SideDetails = ({heading, number}) => {
+const SideDetails = ({heading, number, handleOpenPageNameUpdate, handleOpenPage}) => {
   const { questions} = State();
   return (
     
@@ -27,7 +27,10 @@ const SideDetails = ({heading, number}) => {
           return (
           // <textarea className='preview-question'>
           <div className='preview-question' key={i}>
-            <Link to={`/update/${id}`} >
+            <Link to={`/update/${id}`} onClick={()=>{
+              handleOpenPageNameUpdate("Update Quiz")
+              handleOpenPage("Update Quiz")
+              }} >
           <img src={edits} className='edit-logo' style={{cursor:'pointer'}} alt="" />
             </Link>
             <p>{question}</p>
