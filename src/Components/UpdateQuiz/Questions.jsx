@@ -205,7 +205,6 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
                 fullWidth
                 value={question.text}
                 onChange={handleQuestionChange}
-                margin="normal"
                 style={inputStyle}
                 sx={{
                     color:'var(--grey, #707070)'
@@ -246,7 +245,6 @@ const CreateQuiz = ({handleThreeDotMenu}) => {
                         value={option.text}
                         onChange={(e) => handleOptionChange(e, index)}
                         variant="outlined"
-                        margin="normal"
                     />
                     <Box display="flex" alignItems="center">
                         {/* {option.image && (
