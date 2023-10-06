@@ -14,7 +14,8 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import { State } from "../Context/Provider"
 import axios from 'axios';
 
-const CreateQuiz = ({handleThreeDotMenu}) => {
+const CreateQuiz = ({ handleThreeDotMenu }) => {
+  
   const { quest,questions,setquest, setQuestions} = State();
   const [question, setQuestion] = useState({ text: '', question_image_url: null });
   const [options, setOptions] = useState([
