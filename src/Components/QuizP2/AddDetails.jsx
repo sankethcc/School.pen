@@ -246,7 +246,7 @@ const AddDetails = ({handleThreeDotMenu}) => {
         </div>
       </div>
       :null}
-      <AddNewSubject />
+      {/* <AddNewSubject /> */}
     </div>
   )
 }

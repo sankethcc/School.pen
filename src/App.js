@@ -33,8 +33,8 @@ function App() {
         <Route path="/user" element={<User />} />
         <Route path="user-profile" element={<UserProfile />} />
         <Route path="quiz" element={<CreateQuiz />} /> */}
-          <Route path="/main" element={<MainPageOfQuiz />} />
-        <Route path="/update" element={<UpdatePageOfQuiz />} />
+          <Route path="/main" element={<MainPageOfQuiz />} ></Route>
+        <Route path="/update/:quiz_id" element={<UpdatePageOfQuiz />} />
           
 
         <Route path="*" element={<ErrorPage />} />
